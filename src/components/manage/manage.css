@@ -1,0 +1,71 @@
+:root {
+  font-family: var(--font-family-2);
+}
+
+.manage-container {
+  height: 89vh;
+}
+
+.f-container {
+  height: 89vh;
+  margin: 40px;
+  border-radius: 20px;
+  background: rgba(227, 219, 219, 0.16);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+  border: 1px solid rgba(227, 219, 219, 0.15);
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.page-left {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 0 20px 0;
+}
+
+.page-left h1 {
+  font-size: 80px;
+}
+
+.page-left p {
+  color: hsla(0, 0%, 100%, 0.714);
+  font-size: 40px;
+}
+
+.page-right {
+  border-radius: 20px 20px 0 20px;
+  background-color: rgb(32, 31, 31);
+  box-shadow: 0 0 10px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+
+.button-container button {
+  font-family: var(--font-family-2);
+  border: none;
+  background: none;
+  color: white;
+  font-size: 20px;
+  background-color: hsl(271, 95%, 60%);
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-container button:hover {
+  background-color: hsl(271, 78%, 46%);
+}
