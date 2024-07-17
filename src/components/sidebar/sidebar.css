@@ -1,0 +1,38 @@
+:root {
+  font-family: var(--font-family-2);
+}
+
+.side-container {
+  padding: 40px;
+  width: 20%;
+  color: white;
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px black;
+}
+
+.head-content {
+  color: hsla(0, 0%, 100%, 0.6);
+  margin-bottom: 20px;
+}
+
+.items {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.items a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.items a:hover {
+  background-color: #17181b;
+}

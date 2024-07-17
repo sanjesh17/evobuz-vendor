@@ -1,0 +1,72 @@
+:root {
+  font-family: var(--font-family-2);
+}
+
+.p-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-container {
+  flex-shrink: 0;
+  height: 25%;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 90px;
+  background-color: #111112;
+  box-shadow: 0 0 10px black;
+}
+
+.revenue {
+  font-size: 40px;
+}
+
+.top-container h1:nth-child(2) {
+  font-size: 50px;
+}
+
+.main-container {
+  flex-grow: 1;
+  padding-top: 20px;
+  padding-left: 90px;
+  background-color: #141416;
+  overflow-y: auto;
+}
+
+.main-container h2 {
+  color: rgba(255, 255, 255, 0.664);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 80px 60px;
+  margin-top: 25px;
+  padding-bottom: 60px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
