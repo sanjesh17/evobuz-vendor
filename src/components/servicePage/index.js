@@ -88,7 +88,7 @@ const ServicePage = () => {
     };
 
     getLocation();
-  }, [pincode]); // Runs the function when pincode changes
+  }, [pincode]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -158,6 +158,20 @@ const ServicePage = () => {
   return (
     <div className="service-page-container">
       <h1>Add Service</h1>
+      <svg
+        className="header-slash"
+        xmlns="http://www.w3.org/2000/svg"
+        width="575"
+        height="48"
+        viewBox="0 0 575 48"
+        fill="none"
+      >
+        <path
+          d="M2 41C378 -20.5773 537.333 15.3428 570 41"
+          stroke="#011EB6"
+          stroke-width="13"
+        />
+      </svg>
       <form className="service-form" onSubmit={handleSubmit}>
         <div className="service-form-group">
           <label htmlFor="serviceName" className="service-label">

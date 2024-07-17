@@ -6,7 +6,7 @@ import ProductList from "../components/productcard/ProductList";
 
 const Product = () => {
   return (
-    <>
+    <div className="gradient__bg">
       <Navbar />
       <div className="p-container">
         <Sidebar />
@@ -23,7 +23,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

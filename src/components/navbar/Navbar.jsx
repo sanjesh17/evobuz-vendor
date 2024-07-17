@@ -21,10 +21,10 @@ const Navbar = () => {
           <Link to="/about">
             <p>About</p>
           </Link>
-          <Link to="/service">
+          <Link to="/contact">
             <p>Contact</p>
           </Link>
-          <Link>
+          <Link to="/manage">
             <p>Manage</p>
           </Link>
           <p>Login</p>
