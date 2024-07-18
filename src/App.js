@@ -7,6 +7,7 @@ import Product from "./pages/Product";
 import Service from "./pages/Service";
 import ManagePage from "./pages/ManagePage";
 import DashboardPage from "./pages/DashboardPage";
+import ContactPage from "./pages/ContactPage";
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
           <Route path="/products" element={<Product />} />
           <Route path="/services" element={<Service />} />
           <Route path="/manage" element={<ManagePage />} />
-          <Route path="/dashboard" element={<DashboardPage/>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
     </div>
