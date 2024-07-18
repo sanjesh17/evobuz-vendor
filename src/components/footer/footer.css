@@ -1,0 +1,61 @@
+/* index.css */
+
+.footer-section-container {
+    background-color: #000f1f; /* Dark background color */
+    color: #fff; /* Light text color */
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    width: 100%;
+    margin-top: -20px;
+}
+
+.footer-section-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-sec {
+    display: flex;
+}
+
+.getus-know-container,
+.let-us-connect {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    align-items: center; /* Center items horizontally */
+    margin-left: 50px;
+}
+
+.getus-know-container h2,
+.let-us-connect h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.getus-know-container ul,
+.let-us-connect ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.getus-know-container ul li,
+.let-us-connect ul li {
+    margin-bottom: 8px;
+    margin-right: 10px;
+}
+
+.getus-know-container ul li a,
+.let-us-connect ul li a {
+    color: #fff; /* Link color */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.getus-know-container ul li a:hover,
+.let-us-connect ul li a:hover {
+    color: #ccc; /* Link color on hover */
+}

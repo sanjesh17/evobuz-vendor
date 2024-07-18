@@ -19,7 +19,7 @@
   align-items: center;
 }
 
-.about-image {
+.logo-image-main {
   filter: invert(42%) hue-rotate(180deg) brightness(1.5);
   background-color: transparent;
   height: 45px;

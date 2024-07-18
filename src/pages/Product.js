@@ -3,6 +3,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import Navbar from "../components/navbar/Navbar";
 import "./Product.css";
 import ProductList from "../components/productcard/ProductList";
+import Footer from "../components/footer/Footer";
 
 const Product = () => {
   return (
@@ -23,6 +24,7 @@ const Product = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

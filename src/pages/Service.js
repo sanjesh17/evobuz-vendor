@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import ServiceForm from "../components/servicePage/index";
+import Footer from "../components/footer/Footer";
 import "./Service.css";
 
 const Service = () => {
@@ -11,6 +12,7 @@ const Service = () => {
         <div className="sform-container">
           <ServiceForm />
         </div>
+        <Footer />
       </div>
     </div>
   );
