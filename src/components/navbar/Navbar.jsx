@@ -31,7 +31,9 @@ const Navbar = () => {
           <Link to="/manage">
             <p>Manage</p>
           </Link>
-          <p>Login</p>
+          <Link to="/login">
+            <p>Login</p>
+          </Link>
           <button
             type="button"
             onClick={() => {

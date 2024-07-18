@@ -2,11 +2,11 @@
   overflow: hidden;
 }
 
-.evo__sign-container {
+.login__container {
   height: 86vh;
 }
 
-.evo__sign-content {
+.login__content {
   margin-top: 20px;
   height: 90%;
   width: 60%;
@@ -17,7 +17,7 @@
   border-radius: 20px;
 }
 
-.evo__sign-image {
+.login__image {
   display: flex;
   position: relative;
   border-radius: 20px 0 0 20px;
@@ -26,17 +26,17 @@
   z-index: 0;
 }
 
-.evo__sign-form {
+.login__form {
   position: relative;
   right: 12px;
   border-radius: 20px;
 }
 
-.evo__sign-image img {
+.login__image img {
   height: 100%;
 }
 
-.evo__sign-form {
+.login__form {
   background-color: white;
   box-shadow: 2px 2px 10px black;
 }
@@ -88,6 +88,54 @@
   font-weight: 600;
 }
 
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20%,
+  60% {
+    transform: rotate(20deg);
+  }
+  40%,
+  80% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-3px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.hand-wave {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 4rem; /* Adjust size as needed */
+  animation: wave 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  animation-delay: 1s; /* Optional delay to stagger animations */
+}
+
+.hand-wave:hover {
+  animation: wave 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite,
+    shake 1s linear infinite;
+}
+
 .text-content p {
   margin-top: 8px;
   font-weight: 400;
@@ -95,45 +143,25 @@
   color: hsla(0, 0%, 0%, 0.758);
 }
 
-.container {
-  max-width: 700px;
-  width: 100%;
-  background-color: #fff;
-  padding: 25px 30px;
-  border-radius: 5px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-}
-.container .title {
-  font-size: 25px;
-  font-weight: 500;
-  position: relative;
-}
-.container .title::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-}
-.content form .user-details {
+.user-details {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 2px 0;
 }
-form .user-details .input-box {
+
+.input-box {
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
 }
-form .input-box span.details {
+
+.input-box span.details {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
 }
-.user-details .input-box input {
+
+.input-box input {
   height: 45px;
   width: 100%;
   outline: none;
@@ -144,48 +172,18 @@ form .input-box span.details {
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
-.user-details .input-box input:focus,
-.user-details .input-box input:valid {
+
+.input-box input:focus,
+.input-box input:valid {
   border-color: #9b59b6;
 }
-form .gender-details .gender-title {
-  font-size: 20px;
-  font-weight: 500;
-}
-form .category {
-  display: flex;
-  width: 80%;
-  margin: 14px 0;
-  justify-content: space-between;
-}
-form .category label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-form .category label .dot {
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  margin-right: 10px;
-  background: #d9d9d9;
-  border: 5px solid transparent;
-  transition: all 0.3s ease;
-}
-#dot-1:checked ~ .category label .one,
-#dot-2:checked ~ .category label .two,
-#dot-3:checked ~ .category label .three {
-  background: #9b59b6;
-  border-color: #d9d9d9;
-}
-form input[type="radio"] {
-  display: none;
-}
-form .button {
+
+.button {
   height: 45px;
   margin: 20px 0;
 }
-form .button input {
+
+.button input {
   font-family: var(--font-family-2);
   height: 100%;
   width: 100%;
@@ -199,7 +197,7 @@ form .button input {
   transition: background-color 0.2s ease;
 }
 
-form .button input:hover {
+.button input:hover {
   background-color: #9a3bcf;
 }
 
@@ -218,7 +216,7 @@ form .button input:hover {
 
 .google-signin {
   height: 45px;
-  margin: 20px 0;
+  margin: 5px 0;
 }
 
 .google-signin button {
@@ -237,4 +235,16 @@ form .button input:hover {
 
 .google-signin button:hover {
   background-color: #9a3bcf;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.google-signin svg {
+  height: 20px;
+  align-items: center;
+  justify-content: center;
 }

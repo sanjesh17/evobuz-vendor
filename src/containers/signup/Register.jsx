@@ -1,8 +1,77 @@
-import React from 'react';
-import './register.css';
-import bg1 from "../../assets/Freebie-GradientTextures-01.jpg"
+import React, { useState } from "react";
+import "./register.css";
+import bg1 from "../../assets/Freebie-GradientTextures-01.jpg";
+import { auth, googleProvider } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithPopup,
+} from "firebase/auth";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords don't match");
+      return;
+    }
+
+    try {
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password
+      );
+
+      // Update user profile with name
+      await updateProfile(userCredential.user, {
+        displayName: formData.name,
+      });
+
+      // You can add additional logic here, like storing extra user data in Firestore
+      console.log("User registered successfully");
+
+      // Clear the form
+      setFormData({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // You can add additional logic here, like storing extra user data in Firestore
+      console.log("User signed in successfully with Google:", user);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="evo__sign-container">
       <div className="evo__sign-content">
@@ -16,50 +85,95 @@ const Register = () => {
         </div>
         <div className="evo__sign-form">
           <div className="text-content">
-            <h1>Register Your Business!</h1>
-            <p>Onboard as a vendor and improve your reach, sales and contact.</p>
+            <h1>Register Your Account</h1>
+            <p>Join EvoBuz and start your journey with us today.</p>
             <div className="content">
-        <form action="#">
-          <div className="user-details">
-            <div className="input-box">
-              <span className="details">Business Name</span>
-              <input type="text" placeholder="Enter your name" required />
+              <form onSubmit={handleSubmit}>
+                <div className="user-details">
+                  <div className="input-box">
+                    <span className="details">Full Name</span>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Enter your full name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-box">
+                    <span className="details">Email</span>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-box">
+                    <span className="details">Phone Number</span>
+                    <input
+                      type="tel"
+                      name="phoneNumber"
+                      pattern="[6789][0-9]{9}"
+                      maxLength="10"
+                      placeholder="Enter your number"
+                      required
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-box">
+                    <span className="details">Password</span>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Enter your password"
+                      minLength="8"
+                      required
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="input-box">
+                    <span className="details">Confirm Password</span>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Confirm your password"
+                      minLength="8"
+                      required
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+                <div className="evo_terms">
+                  <input type="checkbox" required />
+                  <span className="conditions">
+                    I've read and agreed with the <span>Terms of Service</span>{" "}
+                    and our <span>Privacy Policy</span>
+                  </span>
+                </div>
+                <div className="sign-button">
+                <div className="button">
+                  <input type="submit" value="Register" />
+                </div>
+                <div className="google-signin">
+                  <button onClick={handleGoogleSignIn}>
+                    Sign Up with Google
+                  </button>
+                </div>
+                </div>
+              </form>
             </div>
-            <div className="input-box">
-              <span className="details">PAN Number</span>
-              <input type="text" placeholder="Enter your username" required />
-            </div>
-            <div className="input-box">
-              <span className="details">Email</span>
-              <input type="email" placeholder="Enter your email" required />
-            </div>
-            <div className="input-box">
-              <span className="details">Phone Number</span>
-              <input type="text" pattern="[6789][0-9]{9}" maxLength="10" placeholder="Enter your number" required />
-            </div>
-            <div className="input-box">
-              <span className="details">Password</span>
-              <input type="password" placeholder="Enter your password" minLength="8" required />
-            </div>
-            <div className="input-box">
-              <span className="details">Confirm Password</span>
-              <input type="password" placeholder="Confirm your password" minLength="8" required />
-            </div>
-          </div>
-          <div className="evo_terms">
-            <input type="checkbox" required/>
-            <span className='conditions'>I've read and agreed with the <span>Terms of Service</span> and our <span>Privacy Policy</span></span>
-          </div>
-          <div className="button">
-            <input type="submit" defaultValue="Register" value="Sign Up" />
-          </div>
-        </form>
-      </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
