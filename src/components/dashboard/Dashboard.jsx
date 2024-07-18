@@ -2,6 +2,7 @@ import React from "react";
 import "./dashboard.css";
 import WeeklySalesLineChart from "../chart/WeeklySalesLineChart";
 import MonthlySalesBarChart from "../chart/MonthlySalesBarChart";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -23,7 +24,20 @@ const Dashboard = () => {
               <MonthlySalesBarChart />
             </div>
           </div>
-          <div className="main-content-container"></div>
+          <div className="main-content-container">
+            <div className="heading-container">
+              <h2>My Products and Services</h2>
+              <div className="btn-box">
+                <Link to="/services">
+                  <button type="button">Add Service</button>
+                </Link>
+                <Link to="/products">
+                  <button type="button">Add Product</button>
+                </Link>
+              </div>
+            </div>
+            <div className="cards-container"></div>
+          </div>
         </div>
       </div>
     </div>

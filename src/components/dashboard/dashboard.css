@@ -93,4 +93,43 @@
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(9.6px);
   -webkit-backdrop-filter: blur(9.6px);
+  color: white;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.main-content-container h2 {
+  color: rgba(255, 255, 255, 0.678);
+}
+
+.heading-container button {
+  font-family: var(--font-family-2);
+  border: none;
+  background: none;
+  color: white;
+  font-size: 16px;
+  background-color: hsl(271, 95%, 60%);
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.heading-container button:hover {
+  background-color: hsl(271, 100%, 55%);
+}
+
+.heading-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.btn-box {
+  display: flex;
+  gap: 20px;
+}
+
+.cards-container {
+  height: 100%;
+  margin-top: 20px;
 }
