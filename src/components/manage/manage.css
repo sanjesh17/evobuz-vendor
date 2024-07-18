@@ -50,7 +50,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 60px;
 }
 
 .button-container button {
@@ -58,7 +58,7 @@
   border: none;
   background: none;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   background-color: hsl(271, 95%, 60%);
   padding: 20px;
   border-radius: 20px;
