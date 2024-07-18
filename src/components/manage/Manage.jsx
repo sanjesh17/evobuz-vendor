@@ -26,7 +26,7 @@ const Manage = () => {
         </div>
         <div className="page-right">
           <div className="button-container">
-            <Link>
+            <Link to="/dashboard">
               <button type="button">View Dashboard</button>
             </Link>
             <Link to="/services">

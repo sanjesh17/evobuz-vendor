@@ -1,0 +1,75 @@
+.dash-container {
+  height: 85vh;
+  padding: 20px;
+}
+
+.dash-main-container {
+  height: 100%;
+  border-radius: 20px;
+  background: rgba(227, 219, 219, 0.16);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+  border: 1px solid rgba(227, 219, 219, 0.15);
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.sidebar-container {
+  color: white;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px 0 0 20px;
+}
+
+.sidebar-container h2 {
+  color: hsla(0, 0%, 100%, 0.763);
+  margin-bottom: 16px;
+}
+
+.sidebar-container p {
+  color: white;
+  margin-bottom: 5px;
+  margin-left: 9px;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  background: rgba(19, 17, 17, 0.16);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-container p:hover {
+  background: rgba(108, 97, 97, 0.16);
+}
+
+.mainboard-container {
+  border-radius: 20px;
+  display: grid;
+  grid-template-rows: 30% 70%;
+  box-shadow: 0 0 10px black;
+}
+
+.analytics-container {
+  border-radius: 20px 20px 0 0;
+  background: rgba(7, 6, 6, 0.35);
+  box-shadow: 0 0px 4px black;
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+}
+
+.main-content-container {
+  border-radius: 0 0 20px 20px;
+  background: rgba(7, 6, 6, 0.45);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9.6px);
+  -webkit-backdrop-filter: blur(9.6px);
+}
