@@ -10,7 +10,11 @@ const Navbar = () => {
         <div className="evo__navbar-links_logo">
           <div className="logo">
             <Link to="/home">
-              <p>EvoBuz</p>
+              <img
+                className="about-image"
+                src="https://res.cloudinary.com/dgviahrbs/image/upload/v1721299352/WhatsApp_Image_2024-07-18_at_13.58.56-removebg-preview_ly8dxx.png"
+                alt="about-logo"
+              />
             </Link>
           </div>
         </div>

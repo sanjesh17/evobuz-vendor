@@ -41,6 +41,20 @@ const Contact = () => {
   return (
     <div className="vendor-contact-form">
       <h1>Contact</h1>
+      <svg
+        className="header-slash"
+        xmlns="http://www.w3.org/2000/svg"
+        width="575"
+        height="48"
+        viewBox="0 0 575 48"
+        fill="none"
+      >
+        <path
+          d="M2 41C378 -20.5773 537.333 15.3428 570 41"
+          stroke="#011EB6"
+          stroke-width="13"
+        />
+      </svg>
       <form
         ref={form}
         onSubmit={sendEmail}
