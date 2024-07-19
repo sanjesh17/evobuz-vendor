@@ -1,6 +1,4 @@
-// src/components/AddProductCard.js
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import "./productcard.css";
 
 const AddProductCard = ({ onAddProduct }) => {
@@ -19,9 +17,7 @@ const AddProductCard = ({ onAddProduct }) => {
         setShowForm(false);
       }
     };
-
     document.addEventListener("mousedown", handleOutsideClick);
-
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
@@ -37,20 +33,14 @@ const AddProductCard = ({ onAddProduct }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("/api/products/", productData)
-      .then((response) => {
-        onAddProduct(response.data);
-        setProductData({
-          product_name: "",
-          Business_name: "",
-          description: "",
-          price: "",
-        });
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+    onAddProduct(productData);
+    setProductData({
+      product_name: "",
+      Business_name: "",
+      description: "",
+      price: "",
+    });
+    setShowForm(false);
   };
 
   const toggleForm = () => {
@@ -98,6 +88,7 @@ const AddProductCard = ({ onAddProduct }) => {
                 value={productData.price}
                 onChange={handleChange}
                 required
+                step="0.01"
               />
               <button type="submit">Add Product</button>
             </form>
