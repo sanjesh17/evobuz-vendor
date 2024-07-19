@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 import AddProductCard from "./AddProductCard";
 import "./productcard.css";
 
-const API_BASE_URL = "http://localhost:8000/api/products/";
+const API_BASE_URL = "https://evobuz-vendor-backend.onrender.com/api/products/";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
