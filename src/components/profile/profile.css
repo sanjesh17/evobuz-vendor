@@ -1,0 +1,144 @@
+@keyframes slideInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes buttonHover {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Profile Page Container */
+.Profile-page-container {
+  animation: fadeIn 1s ease-in-out;
+  color: white;
+  font-family: var(--font-family-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  max-width: 100vw; /* Prevent horizontal overflow */
+  overflow-x: hidden; /* Hide any overflow */
+  height: 100vh;
+}
+
+.Profile-page-container h1 {
+  padding-bottom: 5px;
+}
+
+/* Profile Form Container */
+.profile-form-container {
+  background-color: rgba(255, 255, 255, 0.125); /* Slightly transparent white */
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  overflow-y: scroll;
+  animation: slideInUp 0.5s ease-out;
+}
+
+/* Profile Form Group */
+.profile-form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Profile Form Label */
+.profile-form-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Profile Form Input */
+.profile-form-input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.profile-form-input[type="file"] {
+  padding: 5px;
+}
+
+.profile-form-input:hover,
+.profile-form-input:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Profile Form Logo Preview */
+.profile-form-logo-preview {
+  margin-top: 10px;
+}
+
+.profile-form-logo-preview img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 5px;
+}
+
+/* Profile Form Buttons */
+.profile-form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Profile Form Button */
+.profile-form-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-form-button:hover {
+  background-color: #0056b3;
+  animation: buttonHover 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-form-container {
+    max-width: 300px;
+  }
+}
+@media (max-width: 480px) {
+  .Profile-page-container {
+    padding: 10px;
+  }
+
+  .profile-form-container {
+    padding: 40px;
+
+    max-width: 200px;
+  }
+  .profile-form-button {
+    font-size: 12px;
+  }
+}

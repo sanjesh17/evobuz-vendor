@@ -68,3 +68,10 @@
 .evo__navbar-links_container p:hover {
   color: hsla(0, 0%, 100%, 0.737);
 }
+
+.evo__navbar-links_container svg {
+  cursor: pointer;
+  height: 25px;
+  fill: white;
+  margin-left: 1.2rem;
+}

@@ -1,0 +1,53 @@
+.user-profile-popup {
+  position: absolute;
+  top: 90px;
+  right: 50px;
+  background-color: rgb(20, 20, 20);
+  border: 1px solid rgba(255, 255, 255, 0.393);
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+}
+
+.user-profile-popup .user-info {
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 15px;
+}
+
+.user-profile-popup .user-info p {
+  margin: 0;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  word-break: break-word;
+}
+
+.profilebutton-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-profile-popup button {
+  background-color: hsla(130, 55%, 45%, 0.849);
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.user-profile-popup button:hover {
+  background-color: #33b249;
+}
+
+.navbar-user-icon {
+  cursor: pointer;
+}
