@@ -5,7 +5,7 @@ const usePageLoader = () => {
 
   useEffect(() => {
     const handleLoad = () => {
-      setIsLoading(false);
+      setTimeout(() => setIsLoading(false), 1200);
     };
 
     if (document.readyState === "complete") {
