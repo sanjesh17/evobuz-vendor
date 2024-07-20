@@ -7,13 +7,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBCTPI8wtuntvYn30lKzgRGyF8vVEKpc4g",
-  authDomain: "evobuz-vendor-b74e1.firebaseapp.com",
-  projectId: "evobuz-vendor-b74e1",
-  storageBucket: "evobuz-vendor-b74e1.appspot.com",
-  messagingSenderId: "110052796009",
-  appId: "1:110052796009:web:4346d6b355b4759470a4f8",
-  measurementId: "G-HY55MHF5HE",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
