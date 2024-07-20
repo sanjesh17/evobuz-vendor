@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../components/sidebar/Sidebar";
-import Navbar from "../components/navbar/Navbar";
+import AdminNavbar from "../components/adminnavbar/AdminNavbar";
 import "./Product.css";
 import ProductList from "../components/productcard/ProductList";
 import Footer from "../components/footer/Footer";
@@ -15,7 +15,7 @@ const Product = () => {
       <Loader show={isLoading} />
       {!isLoading && (
         <div className="gradient__bg">
-          <Navbar />
+          <AdminNavbar />
           <div className="p-container">
             <Sidebar />
             <div className="content-container">

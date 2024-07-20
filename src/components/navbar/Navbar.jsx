@@ -25,9 +25,6 @@ const Navbar = () => {
           <Link to="/about">
             <p>About</p>
           </Link>
-          <Link to="/login">
-            <p>Login</p>
-          </Link>
           <button
             type="button"
             onClick={() => {

@@ -238,3 +238,8 @@ form .button input:hover {
 .google-signin button:hover {
   background-color: #9a3bcf;
 }
+
+.log {
+  text-decoration: underline;
+  cursor: pointer;
+}

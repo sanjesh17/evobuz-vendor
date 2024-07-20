@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.css";
 import bg1 from "../../assets/Freebie-GradientTextures-01.jpg";
 import { auth, googleProvider } from "../../firebase";
@@ -68,7 +68,6 @@ const Register = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       console.log("User signed in successfully with Google:", user);
-      // Redirect to dashboard after successful Google sign-in
       navigate("/dashboard");
     } catch (error) {
       setError(error.message);
@@ -89,7 +88,9 @@ const Register = () => {
         <div className="evo__sign-form">
           <div className="text-content">
             <h1>Register Your Account</h1>
-            <p>Join EvoBuz and start your journey with us today.</p>
+            <Link to="/login">
+              <p className="log">Already Have an Account?</p>
+            </Link>
             <div className="content">
               <form onSubmit={handleSubmit}>
                 <div className="user-details">
