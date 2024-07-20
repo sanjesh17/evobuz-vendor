@@ -10,6 +10,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import AboutPage from "./pages/AboutPage";
+import ProtectedRoute from "./components/protectedroutes/ProtectedRoute";
 
 const App = () => {
   return (
@@ -22,7 +23,14 @@ const App = () => {
           <Route path="/products" element={<Product />} />
           <Route path="/services" element={<Service />} />
           <Route path="/manage" element={<ManagePage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/about" element={<AboutPage />} />

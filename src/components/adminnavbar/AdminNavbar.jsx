@@ -1,9 +1,9 @@
 import React from "react";
-import "./navbar.css";
-import { useNavigate, Link } from "react-router-dom";
+import "./adminnavbar.css";
+import { Link } from "react-router-dom";
+import SignOutButton from "../signout/SignOutButton";
 
-const Navbar = () => {
-  const navigate = useNavigate();
+const AdminNavbar = () => {
   return (
     <div className="evo__navbar">
       <div className="evo__navbar-links">
@@ -25,21 +25,17 @@ const Navbar = () => {
           <Link to="/about">
             <p>About</p>
           </Link>
-          <Link to="/login">
-            <p>Login</p>
+          <Link to="/contact">
+            <p>Contact</p>
           </Link>
-          <button
-            type="button"
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            Sign Up
-          </button>
+          <Link to="/dashboard">
+            <p>Dashboard</p>
+          </Link>
+          <SignOutButton />
         </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default AdminNavbar;

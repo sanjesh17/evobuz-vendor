@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./register.css";
 import bg1 from "../../assets/Freebie-GradientTextures-01.jpg";
 import { auth, googleProvider } from "../../firebase";
@@ -9,6 +10,7 @@ import {
 } from "firebase/auth";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,12 +41,10 @@ const Register = () => {
         formData.password
       );
 
-      // Update user profile with name
       await updateProfile(userCredential.user, {
         displayName: formData.name,
       });
 
-      // You can add additional logic here, like storing extra user data in Firestore
       console.log("User registered successfully");
 
       // Clear the form
@@ -55,6 +55,9 @@ const Register = () => {
         password: "",
         confirmPassword: "",
       });
+
+      // Redirect to dashboard
+      navigate("/dashboard");
     } catch (error) {
       setError(error.message);
     }
@@ -64,9 +67,9 @@ const Register = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-
-      // You can add additional logic here, like storing extra user data in Firestore
       console.log("User signed in successfully with Google:", user);
+      // Redirect to dashboard after successful Google sign-in
+      navigate("/dashboard");
     } catch (error) {
       setError(error.message);
     }
@@ -158,16 +161,17 @@ const Register = () => {
                   </span>
                 </div>
                 <div className="sign-button">
-                <div className="button">
-                  <input type="submit" value="Register" />
-                </div>
-                <div className="google-signin">
-                  <button onClick={handleGoogleSignIn}>
-                    Sign Up with Google
-                  </button>
-                </div>
+                  <div className="button">
+                    <input type="submit" value="Register" />
+                  </div>
+                  <div className="google-signin">
+                    <button onClick={handleGoogleSignIn}>
+                      Sign Up with Google
+                    </button>
+                  </div>
                 </div>
               </form>
+              {error && <p className="error-message">{error}</p>}
             </div>
           </div>
         </div>
