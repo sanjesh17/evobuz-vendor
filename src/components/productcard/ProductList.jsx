@@ -1,48 +1,44 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import ProductCard from "./ProductCard";
-import AddProductCard from "./AddProductCard";
 import "./productcard.css";
 
-const API_BASE_URL = "http://localhost:8000/api/products/";
-
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
+  // Sample data
+  const sampleProducts = [
+    {
+      id: 1,
+      name: "Smartphone X",
+      description: "Latest model with advanced features",
+      price: 799.99,
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 2,
+      name: "Laptop Pro",
+      description: "High-performance laptop for professionals",
+      price: 1299.99,
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 3,
+      name: "Wireless Earbuds",
+      description: "Premium sound quality with noise cancellation",
+      price: 149.99,
+      image: "https://via.placeholder.com/150",
+    },
+  ];
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = () => {
-    axios
-      .get(API_BASE_URL)
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the product data!", error);
-      });
-  };
-
-  const handleAddProduct = (newProductData) => {
-    axios
-      .post(API_BASE_URL, newProductData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setProducts((prevProducts) => [...prevProducts, response.data]);
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
-  };
+  if (sampleProducts.length === 0) {
+    return (
+      <div className="product-list empty-list">
+        <p>You have not added any Products yet</p>
+      </div>
+    );
+  }
 
   return (
     <div className="product-list">
-      <AddProductCard onAddProduct={handleAddProduct} />
-      {products.map((product) => (
+      {sampleProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

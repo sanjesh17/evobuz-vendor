@@ -3,18 +3,16 @@ import "./productcard.css";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="card-container">
-      <div className="product-card">
-        <div className="product-image">
-          <img src="https://placehold.co/230x120" alt={product.product_name} />
-        </div>
-        <div className="product-description">
-          <p className="bus-name">{product.Business_name}</p>
-          <h4>{product.product_name}</h4>
-          <p className="desc">{product.description}</p>
-          <div className="price">₹{product.price}</div>
-        </div>
+    <div className="product-card">
+      <div className="product-image">
+        <img src={product.image} alt={product.name} />
       </div>
+      <div className="product-description">
+        <h4>{product.name}</h4>
+        <p className="bus-name">{product.businessName}</p>
+        <p className="desc">{product.description}</p>
+      </div>
+      <button className="price">${product.price.toFixed(2)}</button>
     </div>
   );
 };

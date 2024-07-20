@@ -10,6 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import LoginPage from "./pages/LoginPage";
 import AboutPage from "./pages/AboutPage";
 import ProtectedRoute from "./components/protectedroutes/ProtectedRoute";
+import AuthRedirect from "./components/authredirect/AuthRedirect";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
@@ -17,9 +18,38 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            index
+            element={
+              <AuthRedirect>
+                <Home />
+              </AuthRedirect>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <AuthRedirect>
+                <Home />
+              </AuthRedirect>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <AuthRedirect>
+                <Signup />
+              </AuthRedirect>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <AuthRedirect>
+                <LoginPage />
+              </AuthRedirect>
+            }
+          />
           <Route
             path="/products"
             element={
@@ -60,7 +90,6 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/about" element={<AboutPage />} />
         </Routes>
       </BrowserRouter>

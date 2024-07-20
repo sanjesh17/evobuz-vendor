@@ -37,9 +37,6 @@ const AdminNavbar = () => {
           </div>
         </div>
         <div className="evo__navbar-links_container">
-          <Link to="/home">
-            <p>Home</p>
-          </Link>
           <Link to="/about">
             <p>About</p>
           </Link>
