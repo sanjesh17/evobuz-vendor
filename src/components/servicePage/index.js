@@ -196,7 +196,7 @@ const ServicePage = () => {
             onChange={handleServiceCategoryChange}
           >
             <option value="">Select Service Category</option>
-            <option value="Event Manager">Event Manager</option>
+            <option value="Event Manager">Event Organizer</option>
             <option value="Other">Other</option>
           </select>
         </div>

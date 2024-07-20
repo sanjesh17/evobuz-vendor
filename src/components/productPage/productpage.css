@@ -1,0 +1,129 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.header-slash {
+  height: 20px;
+  margin-bottom: 40px;
+}
+
+.product-page-container {
+  color: white;
+  font-family: var(--font-family-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.product-form {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 90px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.product-form-group {
+  margin-bottom: 20px;
+}
+
+.product-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.product-input,
+.product-select,
+.product-textarea,
+.product-range,
+.product-file {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background: rgb(36, 36, 36);
+  color: white;
+  transition: border-color 0.3s;
+}
+
+.product-input:focus,
+.product-select:focus,
+.product-textarea:focus {
+  outline: none;
+  border-color: #ffa500;
+}
+
+.product-image-preview,
+.product-video-preview {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+.product-image-preview:hover,
+.product-video-preview:hover {
+  transform: scale(1.05);
+}
+
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.product-button {
+  font-family: var(--font-family-2);
+  width: 100%;
+  max-width: 850px;
+  background-color: #a855f7;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  text-align: center;
+  font-size: 15px;
+}
+
+.product-button:hover {
+  background-color: #953bea;
+  transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .product-form {
+    padding: 40px;
+  }
+
+  .product-title {
+    font-size: 2rem;
+  }
+
+  .product-form-group {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-form {
+    padding: 20px;
+  }
+}

@@ -23,7 +23,6 @@ const Dashboard = () => {
         </div>
       );
     }
-
     return (
       <div className="main-content-container">
         <div className="heading-container">
@@ -53,14 +52,16 @@ const Dashboard = () => {
           <p onClick={() => setActiveTab("notifications")}>Notification</p>
         </div>
         <div className="mainboard-container">
-          <div className="analytics-container">
-            <div className="chart-wrapper">
-              <WeeklySalesLineChart />
+          {activeTab === "dashboard" && (
+            <div className="analytics-container">
+              <div className="chart-wrapper">
+                <WeeklySalesLineChart />
+              </div>
+              <div className="chart-wrapper">
+                <MonthlySalesBarChart />
+              </div>
             </div>
-            <div className="chart-wrapper">
-              <MonthlySalesBarChart />
-            </div>
-          </div>
+          )}
           {renderMainContent()}
         </div>
       </div>
