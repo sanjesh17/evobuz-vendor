@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "../components/sidebar/Sidebar";
 import AdminNavbar from "../components/adminnavbar/AdminNavbar";
 import "./Product.css";
 import ProductList from "../components/productcard/ProductList";
@@ -17,7 +16,6 @@ const Product = () => {
         <div className="gradient__bg">
           <AdminNavbar />
           <div className="p-container">
-            <Sidebar />
             <div className="content-container">
               <div className="top-container">
                 <h1 className="revenue">Your total revenue</h1>

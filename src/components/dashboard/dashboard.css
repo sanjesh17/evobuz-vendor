@@ -29,6 +29,7 @@
 .sidebar-container h2 {
   color: hsla(0, 0%, 100%, 0.763);
   margin-bottom: 16px;
+  cursor: pointer;
 }
 
 .sidebar-container p {

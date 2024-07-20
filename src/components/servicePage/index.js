@@ -5,6 +5,7 @@ import "./index.css";
 const ServicePage = () => {
   const [serviceName, setServiceName] = useState("");
   const [serviceType, setServiceType] = useState("");
+  const [serviceCategory, setServiceCategory] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [lowestAmount, setLowestAmount] = useState(0);
@@ -53,8 +54,12 @@ const ServicePage = () => {
   ];
 
   const addServiceCategory = (category) => {
-    if (!selectedServices.includes(category)) {
-      setSelectedServices([...selectedServices, category]);
+    if (serviceCategory === "Event Manager") {
+      if (!selectedServices.includes(category)) {
+        setSelectedServices([...selectedServices, category]);
+      }
+    } else {
+      setSelectedServices([category]);
     }
   };
 
@@ -107,6 +112,7 @@ const ServicePage = () => {
     const formData = {
       serviceName,
       serviceType,
+      serviceCategory,
       location,
       description,
       lowestAmount,
@@ -124,6 +130,7 @@ const ServicePage = () => {
     // Reset form state
     setServiceName("");
     setServiceType("");
+    setServiceCategory("");
     setLocation("");
     setDescription("");
     setLowestAmount(0);
@@ -155,6 +162,11 @@ const ServicePage = () => {
     ]);
   };
 
+  const handleServiceCategoryChange = (e) => {
+    setServiceCategory(e.target.value);
+    setSelectedServices([]);
+  };
+
   return (
     <div className="service-page-container">
       <h1>Add Service</h1>
@@ -169,10 +181,26 @@ const ServicePage = () => {
         <path
           d="M2 41C378 -20.5773 537.333 15.3428 570 41"
           stroke="#011EB6"
-          stroke-width="13"
+          strokeWidth="13"
         />
       </svg>
       <form className="service-form" onSubmit={handleSubmit}>
+        <div className="service-form-group">
+          <label htmlFor="serviceCategory" className="service-label">
+            Service Category:
+          </label>
+          <select
+            id="serviceCategory"
+            className="service-select"
+            value={serviceCategory}
+            onChange={handleServiceCategoryChange}
+          >
+            <option value="">Select Service Category</option>
+            <option value="Event Manager">Event Manager</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
         <div className="service-form-group">
           <label htmlFor="serviceName" className="service-label">
             Service Name:
@@ -254,6 +282,11 @@ const ServicePage = () => {
                 <button
                   type="button"
                   onClick={() => addServiceCategory(category)}
+                  disabled={
+                    serviceCategory === "Other" &&
+                    selectedServices.length > 0 &&
+                    !selectedServices.includes(category)
+                  }
                 >
                   +
                 </button>
@@ -348,6 +381,7 @@ const ServicePage = () => {
             </video>
           ))}
         </div>
+
         <div className="submit-container">
           <button type="submit" className="service-button">
             Submit
