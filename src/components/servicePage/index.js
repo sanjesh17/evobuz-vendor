@@ -36,21 +36,18 @@ const ServicePage = () => {
   ];
 
   const serviceTypes = [
-    "Wedding Services",
+    "Weddings",
     "Corporate Events",
-    "Birthday Parties",
-    "Festivals and Celebrations",
-    "Private Events",
-    "Outdoor Events",
-    "Photography Packages",
-    "Catering Packages",
-    "Event Decor Styles",
-    "Live Entertainment",
-    "AV Equipment Rental",
-    "Transportation Services",
-    "Styling Services",
-    "Logistics Coordination",
-    "Full-Service Event Planning",
+    "Private Parties",
+    "Cultural Events",
+    "Concerts and Performances",
+    "Sporting Events",
+    "Community Events",
+    "Educational Events",
+    "Exhibitions and Trade Shows",
+    "Fashion Shows",
+    "Food and Beverage Events",
+    "Networking Events",
   ];
 
   const addServiceCategory = (category) => {
@@ -216,7 +213,7 @@ const ServicePage = () => {
 
         <div className="service-form-group">
           <label htmlFor="serviceType" className="service-label">
-            Service Type:
+            Event Type:
           </label>
           <select
             id="serviceType"
@@ -224,7 +221,7 @@ const ServicePage = () => {
             value={serviceType}
             onChange={(e) => setServiceType(e.target.value)}
           >
-            <option value="">Select Service Type</option>
+            <option value="">Select Event Type</option>
             {serviceTypes.map((type, index) => (
               <option key={index} value={type}>
                 {type}

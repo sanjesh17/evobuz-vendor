@@ -19,10 +19,7 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Gather the form data
     const formData = new FormData(e.target);
-
-    // Convert form data to an object
     const data = {};
     formData.forEach((value, key) => {
       data[key] = value;

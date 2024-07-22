@@ -1,41 +1,61 @@
 import React from "react";
 import "./navbar.css";
 import { useNavigate, Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <div className="evo__navbar">
-      <div className="evo__navbar-links">
-        <div className="evo__navbar-links_logo">
-          <div className="logo">
-            <Link to="/home">
-              <img
-                className="logo-image-main"
-                src="https://res.cloudinary.com/dgviahrbs/image/upload/v1721299352/WhatsApp_Image_2024-07-18_at_13.58.56-removebg-preview_ly8dxx.png"
-                alt="about-logo"
-              />
-            </Link>
-          </div>
-        </div>
-        <div className="evo__navbar-links_container">
-          <Link to="/home">
-            <p>Home</p>
-          </Link>
-          <Link to="/about">
-            <p>About</p>
-          </Link>
-          <button
-            type="button"
-            onClick={() => {
-              navigate("/signup");
-            }}
-          >
-            Sign Up
-          </button>
+    <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/home">
+          <img
+            className="logo-image-main"
+            src="https://res.cloudinary.com/dgviahrbs/image/upload/v1721299352/WhatsApp_Image_2024-07-18_at_13.58.56-removebg-preview_ly8dxx.png"
+            alt="about-logo"
+          />
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <FontAwesomeIcon icon={faBars} className="hamburger-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/home">
+                <p>Home</p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                <p>About</p>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn-sign-up"
+                type="button"
+                onClick={() => {
+                  navigate("/signup");
+                }}
+              >
+                Sign Up
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

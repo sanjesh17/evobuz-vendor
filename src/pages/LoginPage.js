@@ -1,7 +1,6 @@
 import React from "react";
 import Login from "../components/login/Login";
 import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/footer/Footer";
 import usePageLoader from "../components/PageLoader/usePageLoader";
 import Loader from "../components/loader/Loader";
 
@@ -15,7 +14,6 @@ const LoginPage = () => {
         <div className="gradient__bg">
           <Navbar />
           <Login />
-          <Footer />
         </div>
       )}
     </>

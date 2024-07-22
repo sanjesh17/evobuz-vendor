@@ -19,6 +19,7 @@
 }
 
 .sidebar-container {
+  margin-top: 20px;
   color: white;
   padding: 20px 40px;
   display: flex;
