@@ -4,7 +4,6 @@ import "./index.css";
 
 const ServicePage = () => {
   const [serviceName, setServiceName] = useState("");
-  const [serviceType, setServiceType] = useState("");
   const [serviceCategory, setServiceCategory] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -17,6 +16,7 @@ const ServicePage = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [videoPreviews, setVideoPreviews] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
+  const [selectedEventTypes, setSelectedEventTypes] = useState([]);
 
   const serviceCategories = [
     "Event Planning",
@@ -35,7 +35,7 @@ const ServicePage = () => {
     "Other Services",
   ];
 
-  const serviceTypes = [
+  const eventTypes = [
     "Weddings",
     "Corporate Events",
     "Private Parties",
@@ -63,6 +63,18 @@ const ServicePage = () => {
   const removeServiceCategory = (category) => {
     setSelectedServices(
       selectedServices.filter((service) => service !== category)
+    );
+  };
+
+  const addEventType = (type) => {
+    if (!selectedEventTypes.includes(type)) {
+      setSelectedEventTypes([...selectedEventTypes, type]);
+    }
+  };
+
+  const removeEventType = (type) => {
+    setSelectedEventTypes(
+      selectedEventTypes.filter((eventType) => eventType !== type)
     );
   };
 
@@ -97,10 +109,10 @@ const ServicePage = () => {
 
     if (
       !serviceName ||
-      !serviceType ||
       !location ||
       !description ||
-      selectedServices.length === 0
+      selectedServices.length === 0 ||
+      selectedEventTypes.length === 0
     ) {
       setError("Please fill in all required fields.");
       return;
@@ -108,7 +120,6 @@ const ServicePage = () => {
 
     const formData = {
       serviceName,
-      serviceType,
       serviceCategory,
       location,
       description,
@@ -117,16 +128,17 @@ const ServicePage = () => {
       images: imageFiles,
       videos: videoFiles,
       selectedServices,
+      selectedEventTypes,
     };
 
     console.log("Form submitted:", formData);
     console.log("Image files:", imageFiles);
     console.log("Video files:", videoFiles);
     console.log("Selected services:", selectedServices);
+    console.log("Selected event types:", selectedEventTypes);
 
     // Reset form state
     setServiceName("");
-    setServiceType("");
     setServiceCategory("");
     setLocation("");
     setDescription("");
@@ -138,6 +150,7 @@ const ServicePage = () => {
     setImagePreviews([]);
     setVideoPreviews([]);
     setSelectedServices([]);
+    setSelectedEventTypes([]);
     setError("");
   };
 
@@ -212,22 +225,33 @@ const ServicePage = () => {
         </div>
 
         <div className="service-form-group">
-          <label htmlFor="serviceType" className="service-label">
-            Event Type:
-          </label>
-          <select
-            id="serviceType"
-            className="service-select"
-            value={serviceType}
-            onChange={(e) => setServiceType(e.target.value)}
-          >
-            <option value="">Select Event Type</option>
-            {serviceTypes.map((type, index) => (
-              <option key={index} value={type}>
-                {type}
-              </option>
+          <label className="service-label">Event Types:</label>
+          <div className="available-services">
+            {eventTypes.map((type, index) => (
+              <div key={index} className="available-service">
+                <span>{type}</span>
+                <button
+                  type="button"
+                  onClick={() => addEventType(type)}
+                  disabled={selectedEventTypes.includes(type)}
+                >
+                  +
+                </button>
+              </div>
             ))}
-          </select>
+          </div>
+        </div>
+
+        <div className="selected-services-container">
+          <h3>Selected Event Types:</h3>
+          {selectedEventTypes.map((type, index) => (
+            <div key={index} className="selected-service">
+              <span>{type}</span>
+              <button type="button" onClick={() => removeEventType(type)}>
+                -
+              </button>
+            </div>
+          ))}
         </div>
 
         <div className="service-form-group">

@@ -7,8 +7,7 @@ const ProductPage = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productSubcategory, setProductSubcategory] = useState("");
-  const [lowestPrice, setLowestPrice] = useState(0);
-  const [highestPrice, setHighestPrice] = useState(10000);
+  const [price, setPrice] = useState("");
   const [stockAvailability, setStockAvailability] = useState(0);
   const [productPolicies, setProductPolicies] = useState("");
   const [imageFiles, setImageFiles] = useState([]);
@@ -64,6 +63,7 @@ const ProductPage = () => {
       !productDescription ||
       !productCategory ||
       !productSubcategory ||
+      !price ||
       stockAvailability < 0
     ) {
       setError("Please fill in all required fields.");
@@ -75,8 +75,7 @@ const ProductPage = () => {
       productDescription,
       productCategory,
       productSubcategory,
-      lowestPrice,
-      highestPrice,
+      price,
       stockAvailability,
       productPolicies,
       images: imageFiles,
@@ -90,8 +89,7 @@ const ProductPage = () => {
     setProductDescription("");
     setProductCategory("");
     setProductSubcategory("");
-    setLowestPrice(0);
-    setHighestPrice(10000);
+    setPrice("");
     setStockAvailability(0);
     setProductPolicies("");
     setImageFiles([]);
@@ -206,32 +204,17 @@ const ProductPage = () => {
         )}
 
         <div className="product-form-group">
-          <label htmlFor="productLowestPrice" className="product-label">
-            Lowest Price: ₹{lowestPrice}
+          <label htmlFor="productPrice" className="product-label">
+            Price (₹):
           </label>
           <input
-            type="range"
-            id="productLowestPrice"
-            className="product-range"
+            type="number"
+            id="productPrice"
+            className="product-input"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             min="0"
-            max="100000"
-            value={lowestPrice}
-            onChange={(e) => setLowestPrice(Number(e.target.value))}
-          />
-        </div>
-
-        <div className="product-form-group">
-          <label htmlFor="productHighestPrice" className="product-label">
-            Highest Price: ₹{highestPrice}
-          </label>
-          <input
-            type="range"
-            id="productHighestPrice"
-            className="product-range"
-            min="0"
-            max="1000000"
-            value={highestPrice}
-            onChange={(e) => setHighestPrice(Number(e.target.value))}
+            step="0.01"
           />
         </div>
 
