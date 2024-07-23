@@ -27,7 +27,7 @@ const WeeklySalesLineChart = () => {
     datasets: [
       {
         label: "This Week",
-        data: [12, 19, 3, 5, 2, 3, 7],
+        data: [1, 4, 5, 3, 2, 1, 12],
         borderColor: "rgba(255, 99, 132, 1)",
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         tension: 0.4,

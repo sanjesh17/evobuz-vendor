@@ -1,8 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./profile.css";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth();
 
 const ProfilePage = () => {
   const [logoPreview, setLogoPreview] = useState(null);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setEmail(user.email);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
@@ -104,13 +117,15 @@ const ProfilePage = () => {
         </div>
         <div className="profile-form-group">
           <label className="profile-form-label" htmlFor="email">
-            Email
+            Email Address
           </label>
           <input
             type="email"
             id="email"
             name="email"
             className="profile-form-input"
+            value={email}
+            readOnly
           />
         </div>
         <div className="profile-form-group">
