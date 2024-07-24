@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./userprofilepopup.css";
-
+import SignOutButton from "../signout/SignOutButton";
 const UserProfilePopup = ({ user, onClose }) => {
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ const UserProfilePopup = ({ user, onClose }) => {
       </div>
       <div className="profilebutton-container">
         <button onClick={handleMyProfile}>My Profile</button>
+        <SignOutButton />
       </div>
     </div>
   );
