@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
         <p className="bus-name">{product.businessName}</p>
         <p className="desc">{product.description}</p>
       </div>
-      <button className="price">${product.price.toFixed(2)}</button>
+      <button className="price">${product.price}</button>
     </div>
   );
 };

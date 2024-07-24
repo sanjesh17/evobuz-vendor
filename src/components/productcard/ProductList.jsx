@@ -1,44 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import "./productcard.css";
 
 const ProductList = () => {
-  // Sample data
-  const sampleProducts = [
-    {
-      id: 1,
-      name: "Smartphone X",
-      description: "Latest model with advanced features",
-      price: 799.99,
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 2,
-      name: "Laptop Pro",
-      description: "High-performance laptop for professionals",
-      price: 1299.99,
-      image: "https://via.placeholder.com/150",
-    },
-    {
-      id: 3,
-      name: "Wireless Earbuds",
-      description: "Premium sound quality with noise cancellation",
-      price: 149.99,
-      image: "https://via.placeholder.com/150",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (sampleProducts.length === 0) {
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch(
+        "https://evobuz-postgresql.onrender.com/api/products/"
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
+      }
+      const data = await response.json();
+      setProducts(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="product-list">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="product-list">Error: {error}</div>;
+  }
+
+  if (products.length === 0) {
     return (
       <div className="product-list empty-list">
-        <p>You have not added any Products yet</p>
+        <p>No products available</p>
       </div>
     );
   }
 
   return (
     <div className="product-list">
-      {sampleProducts.map((product) => (
+      {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

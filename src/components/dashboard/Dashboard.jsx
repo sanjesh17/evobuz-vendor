@@ -4,11 +4,15 @@ import WeeklySalesLineChart from "../chart/WeeklySalesLineChart";
 import MonthlySalesBarChart from "../chart/MonthlySalesBarChart";
 import { Link } from "react-router-dom";
 import ProductList from "../productcard/ProductList";
+import NotificationPage from "../../pages/NotificationPage";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const renderMainContent = () => {
+    if (activeTab === "notifications") {
+      return <NotificationPage />;
+    }
     if (activeTab === "products") {
       return (
         <div className="p-container">
@@ -73,7 +77,7 @@ const Dashboard = () => {
           <p onClick={() => setActiveTab("products")}>My Products</p>
           <p onClick={() => setActiveTab("services")}>My Services</p>
           <p onClick={() => setActiveTab("reviews")}>Reviews</p>
-          <p onClick={() => setActiveTab("notifications")}>Notification</p>
+          <p onClick={() => setActiveTab("notifications")}>Notifications</p>
         </div>
         <div className="mainboard-container">
           {activeTab === "dashboard" && (
