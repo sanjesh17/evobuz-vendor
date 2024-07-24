@@ -12,6 +12,7 @@ import AboutPage from "./pages/AboutPage";
 import ProtectedRoute from "./components/protectedroutes/ProtectedRoute";
 import AuthRedirect from "./components/authredirect/AuthRedirect";
 import ProfilePage from "./pages/ProfilePage";
+import DetailPage from "./pages/DetailPage";
 
 const App = () => {
   return (
@@ -91,6 +92,7 @@ const App = () => {
             }
           />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/productdetails" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>

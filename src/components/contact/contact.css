@@ -1,5 +1,6 @@
 /* Vendor contact form container */
 .vendor-contact-form {
+  margin-top: 50px;
   color: white;
   display: flex;
   flex-direction: column;

@@ -1,93 +1,108 @@
 .Not-card-container {
-  max-width: 90%;
   width: 100%;
-  background-color: transparent;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-  margin-top: 40px;
-}
-
-.notification-image {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333333;
+  overflow: visible;
+  position: relative;
 }
 
 .Notification-content {
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 16px;
+}
+
+.notification-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 16px;
+  object-fit: cover;
+}
+
+.Notification-content p {
+  flex: 1;
+  margin: 0;
+  font-size: 14px;
+  color: #e0e0e0;
+  line-height: 1.4;
 }
 
 .Notification-footer {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
+  padding: 12px 16px;
+  background-color: #252525;
+}
+
+.Notification-footer p {
+  margin: 0;
+  font-size: 12px;
+  color: #a0a0a0;
 }
 
 .ellipsis-container {
   cursor: pointer;
+  padding: 4px;
+  color: #a0a0a0;
+  position: relative;
+}
+
+.ellipsis-container:hover {
+  color: #ffffff;
+}
+
+.notification-popup {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #252525;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 16px;
+  z-index: 10;
+  width: 200px;
+}
+
+.notification-popup p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #e0e0e0;
 }
 
 .delete-button,
 .cancel-button {
-  padding: 5px 8px;
+  padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s;
 }
 
 .delete-button {
-  background-color: #e74c3c;
-  color: #fff;
+  background-color: #d32f2f;
+  color: #ffffff;
+  margin-right: 8px;
 }
 
 .cancel-button {
-  background-color: #95a5a6;
-  color: #fff;
+  background-color: #424242;
+  color: #ffffff;
 }
 
 .delete-button:hover {
-  background-color: #c0392b;
+  background-color: #b71c1c;
 }
 
 .cancel-button:hover {
-  background-color: #7f8c8d;
+  background-color: #616161;
 }
 
-@media (min-width: 600px) and (max-width: 1024px) {
-  .Not-card-container {
-    max-width: 80%;
-  }
-
-  .notification-image {
-    height: 45px;
-    width: 45px;
-  }
-
-  .delete-button,
-  .cancel-button {
-    padding: 5px 10px;
-    margin-right: 8px;
-  }
-}
-
-@media (min-width: 1025px) {
-  .Not-card-container {
-    max-width: 500px;
-  }
-
-  .notification-image {
-    height: 50px;
-    width: 50px;
-  }
-
-  .delete-button,
-  .cancel-button {
-    padding: 5px 10px;
-    margin-right: 10px;
+@media (max-width: 600px) {
+  .Notification-content,
+  .Notification-footer {
+    padding: 12px;
   }
 }
