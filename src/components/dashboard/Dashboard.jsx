@@ -68,7 +68,9 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
-        <div className="cards-container"></div>
+        <div className="cards-container">
+          <ProductList />
+        </div>
       </div>
     );
   };

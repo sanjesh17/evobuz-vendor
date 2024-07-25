@@ -92,7 +92,7 @@ const App = () => {
             }
           />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/productdetails" element={<DetailPage />} />
+          <Route path="/productdetails/:id" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
     </div>
