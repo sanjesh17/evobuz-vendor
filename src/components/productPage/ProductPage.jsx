@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./productpage.css";
+import { useNavigate } from "react-router-dom";
 
 const ProductAddedPopup = ({ productName, onClose }) => {
   return (
@@ -46,6 +47,8 @@ const ProductPage = () => {
   const [videoPreviews, setVideoPreviews] = useState([]);
   const [error, setError] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+
+  const navigate = useNavigate();
 
   const productCategories = {
     "Apparel and Accessories": [
@@ -349,7 +352,9 @@ const ProductPage = () => {
       {showPopup && (
         <ProductAddedPopup
           productName={productName}
-          onClose={() => setShowPopup(false)}
+          onClose={() => {
+            navigate("/dashboard");
+          }}
         />
       )}
     </div>

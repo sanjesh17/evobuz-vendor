@@ -290,3 +290,33 @@
   grid-template-columns: 33% 33% 33%;
   row-gap: 40px;
 }
+
+.button-close-container {
+  display: flex;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  border-radius: 12px;
+  color: white;
+  height: 50px;
+  width: 50px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  background-color: rgba(220, 25, 25, 0.911);
+  box-shadow: 0 0 2px black;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  transition: background-color 0.5s ease;
+}
+
+.close:hover {
+  background-color: rgb(241, 16, 16);
+}

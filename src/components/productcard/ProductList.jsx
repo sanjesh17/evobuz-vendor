@@ -7,6 +7,12 @@ const ProductList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const handleDelete = (deletedProductId) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product._id !== deletedProductId)
+    );
+  };
+
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -47,7 +53,11 @@ const ProductList = () => {
   return (
     <div className="product-list">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard
+          key={product.id}
+          product={product}
+          onDelete={handleDelete}
+        />
       ))}
     </div>
   );
