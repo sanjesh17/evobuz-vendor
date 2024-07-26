@@ -1,6 +1,36 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./productpage.css";
+
+const ProductAddedPopup = ({ productName, onClose }) => {
+  return (
+    <div className="popup-overlay">
+      <div className="product-added-popup">
+        <div className="popup-content">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="checkmark-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <p className="popup-text">{productName} added successfully!</p>
+        </div>
+        <div className="close-button-container">
+          <button className="close-button" onClick={onClose}>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ProductPage = () => {
   const [productName, setProductName] = useState("");
@@ -15,6 +45,7 @@ const ProductPage = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [videoPreviews, setVideoPreviews] = useState([]);
   const [error, setError] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
 
   const productCategories = {
     "Apparel and Accessories": [
@@ -55,7 +86,7 @@ const ProductPage = () => {
     "Fashion and Clothing": ["Men's Wear", "Women's Wear", "Kids' Wear"],
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -82,21 +113,42 @@ const ProductPage = () => {
       videos: videoFiles,
     };
 
-    console.log("Form submitted:", formData);
+    try {
+      const response = await fetch(
+        "https://vendorweb.onrender.com/vendor/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    // Reset form state
-    setProductName("");
-    setProductDescription("");
-    setProductCategory("");
-    setProductSubcategory("");
-    setPrice("");
-    setStockAvailability(0);
-    setProductPolicies("");
-    setImageFiles([]);
-    setVideoFiles([]);
-    setImagePreviews([]);
-    setVideoPreviews([]);
-    setError("");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Product inserted successfully:", data);
+        setShowPopup(true);
+        setProductName("");
+        setProductDescription("");
+        setProductCategory("");
+        setProductSubcategory("");
+        setPrice("");
+        setStockAvailability(0);
+        setProductPolicies("");
+        setImageFiles([]);
+        setVideoFiles([]);
+        setImagePreviews([]);
+        setVideoPreviews([]);
+        setError("");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message);
+      }
+    } catch (error) {
+      console.error("Error inserting product:", error);
+      setError("Internal server error");
+    }
   };
 
   const handleImageChange = (e) => {
@@ -118,7 +170,7 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="product-page-container">
+    <div className={`product-page-container ${showPopup ? "blurred" : ""}`}>
       <h1>Add Product</h1>
       <svg
         className="header-slash"
@@ -294,6 +346,12 @@ const ProductPage = () => {
           </button>
         </div>
       </form>
+      {showPopup && (
+        <ProductAddedPopup
+          productName={productName}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
     </div>
   );
 };

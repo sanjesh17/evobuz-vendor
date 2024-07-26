@@ -3,16 +3,16 @@ import "./productcard.css";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  console.log(product);
   return (
-    <Link to={`/productdetails/${product.id}`}>
+    <Link to={`/productdetails/${product._id}`}>
       <div className="product-card">
         <div className="product-image">
-          <img src={product.image} alt={product.product_name} />
+          <img src={product.images[0]} alt={product.productName} />
         </div>
         <div className="product-description">
-          <p className="bus-name">{product.Business_name}</p>
-          <h4>{product.product_name}</h4>
-          <p className="desc">{product.description}</p>
+          <h4>{product.productName}</h4>
+          <p className="desc">{product.productDescription}</p>
         </div>
         <button className="price">₹{product.price}</button>
       </div>

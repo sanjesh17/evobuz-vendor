@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./index.css";
 
@@ -11,6 +11,7 @@ const ServicePage = () => {
   const [highestAmount, setHighestAmount] = useState(10000);
   const [pincode, setPincode] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFiles, setVideoFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -104,7 +105,7 @@ const ServicePage = () => {
     getLocation();
   }, [pincode]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -118,40 +119,84 @@ const ServicePage = () => {
       return;
     }
 
-    const formData = {
-      serviceName,
-      serviceCategory,
-      location,
-      description,
-      lowestAmount,
-      highestAmount,
-      images: imageFiles,
-      videos: videoFiles,
-      selectedServices,
-      selectedEventTypes,
-    };
+    const formData = new FormData();
+    formData.append("serviceName", serviceName);
+    formData.append("serviceCategory", serviceCategory);
+    formData.append("location", location);
+    formData.append("description_ser", description);
+    formData.append("lowestAmount", lowestAmount);
+    formData.append("highestAmount", highestAmount);
+    formData.append("selectedServices", JSON.stringify(selectedServices));
+    formData.append("selectedEventTypes", JSON.stringify(selectedEventTypes));
 
-    console.log("Form submitted:", formData);
-    console.log("Image files:", imageFiles);
-    console.log("Video files:", videoFiles);
-    console.log("Selected services:", selectedServices);
-    console.log("Selected event types:", selectedEventTypes);
+    if (imageFiles.length > 0) {
+      formData.append("images", imageFiles[0]);
+    }
 
-    // Reset form state
-    setServiceName("");
-    setServiceCategory("");
-    setLocation("");
-    setDescription("");
-    setLowestAmount(0);
-    setHighestAmount(10000);
-    setPincode("");
-    setImageFiles([]);
-    setVideoFiles([]);
-    setImagePreviews([]);
-    setVideoPreviews([]);
-    setSelectedServices([]);
-    setSelectedEventTypes([]);
-    setError("");
+    if (videoFiles.length > 0) {
+      formData.append("videos", videoFiles[0]);
+    }
+
+    console.log("FormData contents:");
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
+
+    try {
+      console.log(
+        "Sending request to:",
+        "https://evobuzbackend-attempt-4.onrender.com/api/services/add/"
+      );
+      const response = await axios.post(
+        "https://evobuzbackend-attempt-4.onrender.com/api/services/add/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Full response:", response);
+      console.log("Service added successfully:", response.data);
+      setSuccess("Service added successfully!");
+
+      // Reset form state
+      setServiceName("");
+      setServiceCategory("");
+      setLocation("");
+      setDescription("");
+      setLowestAmount(0);
+      setHighestAmount(10000);
+      setPincode("");
+      setImageFiles([]);
+      setVideoFiles([]);
+      setImagePreviews([]);
+      setVideoPreviews([]);
+      setSelectedServices([]);
+      setSelectedEventTypes([]);
+      setError("");
+    } catch (error) {
+      console.error("Full error object:", error);
+      if (error.response) {
+        console.error("Error data:", error.response.data);
+        console.error("Error status:", error.response.status);
+        console.error("Error headers:", error.response.headers);
+        setError(
+          `Server error: ${error.response.status}. ${
+            error.response.data.message || "Please try again."
+          }`
+        );
+      } else if (error.request) {
+        console.error("Error request:", error.request);
+        setError("No response received from server. Please try again.");
+      } else {
+        console.error("Error message:", error.message);
+        setError(
+          "An error occurred while sending the request. Please try again."
+        );
+      }
+    }
   };
 
   const handleImageChange = (e) => {
@@ -194,6 +239,8 @@ const ServicePage = () => {
           strokeWidth="13"
         />
       </svg>
+      {error && <p className="error-message">{error}</p>}
+      {success && <p className="success-message">{success}</p>}
       <form className="service-form" onSubmit={handleSubmit}>
         <div className="service-form-group">
           <label htmlFor="serviceCategory" className="service-label">
@@ -265,7 +312,6 @@ const ServicePage = () => {
             value={pincode}
             onChange={(e) => setPincode(e.target.value)}
           />
-          {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
 
         <div className="service-form-group">

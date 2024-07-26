@@ -14,7 +14,7 @@ const ProductList = () => {
   const fetchProducts = async () => {
     try {
       const response = await fetch(
-        "https://evobuzbackend-attempt-4.onrender.com/api/products/"
+        "https://vendorweb.onrender.com/vendor/products"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch products");

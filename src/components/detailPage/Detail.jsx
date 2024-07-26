@@ -10,24 +10,19 @@ const Detail = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { id } = useParams(); // Get the id from the URL
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://evobuzbackend-attempt-4.onrender.com/api/products/"
+          `https://vendorweb.onrender.com/vendor/products/${id}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        const selectedProduct = data.find((p) => p.id === parseInt(id));
-        if (selectedProduct) {
-          setProduct(selectedProduct);
-        } else {
-          setError("Product not found");
-        }
+        setProduct(data);
         setLoading(false);
       } catch (error) {
         setError("Error fetching data: " + error.message);
@@ -46,7 +41,7 @@ const Detail = () => {
       <div className="detail-content">
         <div className="carousel-container">
           <div className="detail-header">
-            <h2>{product.product_name}</h2>
+            <h2>{product.productName}</h2>
           </div>
           <div className="image-cards">
             <div className="image-big">
@@ -60,10 +55,9 @@ const Detail = () => {
         </div>
         <div className="detail-content-container">
           <div className="desc-container">
-            <h4>{product.Business_name}</h4>
-            <h3>{product.product_name}</h3>
+            <h3>{product.productName}</h3>
             <hr></hr>
-            <p>{product.description}</p>
+            <p>{product.productDescription}</p>
             <div className="price-container">
               <div className="pricebtn-container">
                 <button type="button">₹{product.price}</button>
