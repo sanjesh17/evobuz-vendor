@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./adminnavbar.css";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import Logo from '../../assets/Logo.png'
 import UserProfilePopup from "../userpopup/UserProfilePopup";
 
 const AdminNavbar = () => {
@@ -30,8 +30,8 @@ const AdminNavbar = () => {
             <Link to="/home">
               <img
                 className="logo-image-main"
-                src="https://res.cloudinary.com/dgviahrbs/image/upload/v1721299352/WhatsApp_Image_2024-07-18_at_13.58.56-removebg-preview_ly8dxx.png"
-                alt="about-logo"
+                src={Logo}
+                alt="about"
               />
             </Link>
           </div>

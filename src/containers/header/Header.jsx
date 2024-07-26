@@ -19,7 +19,7 @@ const Header = () => {
         </div>
       </div>
       <div className="evo__header-image">
-        <img src={event} />
+        <img src={event} alt="event" />
       </div>
     </div>
   )
