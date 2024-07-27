@@ -6,8 +6,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ProductCard = ({ product, onDelete }) => {
   const handleDelete = (e) => {
-    e.preventDefault(); // Prevent navigation
-    e.stopPropagation(); // Prevent event bubbling
+    e.preventDefault();
+    e.stopPropagation(); 
     fetch(`https://vendorweb.onrender.com/vendor/products/${product._id}`, {
       method: "DELETE",
       headers: {
@@ -26,8 +26,6 @@ const ProductCard = ({ product, onDelete }) => {
       })
       .catch((error) => {
         console.error("Error deleting product:", error);
-        // Consider adding user-facing error handling here, such as:
-        // alert("Failed to delete product. Please try again.");
       });
   };
 

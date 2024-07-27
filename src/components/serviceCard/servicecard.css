@@ -1,0 +1,137 @@
+.service-card {
+  font-family: var(--font-family-2);
+  background-color: #212229;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0px 2px black;
+  transition: all 0.3s ease;
+  width: 300px;
+  cursor: pointer;
+  color: white;
+}
+
+.service-card.expanded {
+  width: 350px;
+}
+
+.service-card:hover {
+  background-color: #18191e;
+}
+
+.service-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-content {
+  padding: 15px;
+}
+
+.service-category {
+  background-color: #a855f7;
+  color: white;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.service-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.service-location {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.service-description {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.service-price {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.service-details {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.service-details h4 {
+  margin-bottom: 5px;
+  color: #a855f7;
+}
+
+.service-details ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.service-details li {
+  margin-bottom: 3px;
+}
+
+.service-media {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.image-count,
+.video-count {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.expand-button,
+.delete-button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.expand-button {
+  background-color: #4caf50;
+}
+
+.expand-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+}
+
+.delete-button:hover {
+  background-color: #ff3333;
+}
+
+.delete-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

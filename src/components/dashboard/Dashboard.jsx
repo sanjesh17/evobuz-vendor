@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ProductList from "../productcard/ProductList";
 import NotificationPage from "../../pages/NotificationPage";
 import Contact from "../contact/Contact";
+import ServiceList from "../serviceCard/ServiceList";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -48,7 +49,7 @@ const Dashboard = () => {
                 </Link>
               </div>
               <div className="cards">
-                <ProductList />
+                <ServiceList />
               </div>
             </div>
           </div>
@@ -69,7 +70,18 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="cards-container">
-          <ProductList />
+          <div className="pro-card-container">
+            <hr></hr>
+            <h4>Products</h4>
+            <br />
+            <ProductList />
+          </div>
+          <hr />
+          <div className="serv-card-container">
+            <h4>Services</h4>
+            <br />
+            <ServiceList />
+          </div>
         </div>
       </div>
     );

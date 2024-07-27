@@ -193,7 +193,6 @@
   width: 250px;
   background-color: #212229;
   border-radius: 20px;
-  padding: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   display: flex;

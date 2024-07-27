@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./index.css";
 
 const ServicePage = () => {
@@ -18,6 +17,7 @@ const ServicePage = () => {
   const [videoPreviews, setVideoPreviews] = useState([]);
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedEventTypes, setSelectedEventTypes] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
 
   const serviceCategories = [
     "Event Planning",
@@ -85,11 +85,12 @@ const ServicePage = () => {
         try {
           setError("");
           const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-          const response = await axios.get(
+          const response = await fetch(
             `https://maps.googleapis.com/maps/api/geocode/json?address=${pincode}&key=${apiKey}`
           );
-          if (response.data.status === "OK") {
-            const result = response.data.results[0];
+          const data = await response.json();
+          if (data.status === "OK") {
+            const result = data.results[0];
             setLocation(result.formatted_address);
           } else {
             setError(
@@ -119,49 +120,59 @@ const ServicePage = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("serviceName", serviceName);
-    formData.append("serviceCategory", serviceCategory);
-    formData.append("location", location);
-    formData.append("description_ser", description);
-    formData.append("lowestAmount", lowestAmount);
-    formData.append("highestAmount", highestAmount);
-    formData.append("selectedServices", JSON.stringify(selectedServices));
-    formData.append("selectedEventTypes", JSON.stringify(selectedEventTypes));
+    // Function to convert file to base64
+    const fileToBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+    };
 
-    if (imageFiles.length > 0) {
-      formData.append("images", imageFiles[0]);
-    }
+    // Convert image files to base64
+    const imageBase64Promises = imageFiles.map((file) => fileToBase64(file));
+    const imageBase64Results = await Promise.all(imageBase64Promises);
 
-    if (videoFiles.length > 0) {
-      formData.append("videos", videoFiles[0]);
-    }
+    // Convert video files to base64
+    const videoBase64Promises = videoFiles.map((file) => fileToBase64(file));
+    const videoBase64Results = await Promise.all(videoBase64Promises);
 
-    console.log("FormData contents:");
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
+    const data = {
+      serviceName,
+      serviceCategory,
+      location,
+      description_ser: description,
+      lowestAmount,
+      highestAmount,
+      selectedServices,
+      selectedEventTypes,
+      images: imageBase64Results,
+      videos: videoBase64Results,
+    };
 
     try {
-      console.log(
-        "Sending request to:",
-        "https://evobuzbackend-attempt-4.onrender.com/api/services/add/"
-      );
-      const response = await axios.post(
-        "https://evobuzbackend-attempt-4.onrender.com/api/services/add/",
-        formData,
+      const response = await fetch(
+        "https://vendorweb.onrender.com/vendor/services",
         {
+          method: "POST",
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify(data),
         }
       );
 
-      console.log("Full response:", response);
-      console.log("Service added successfully:", response.data);
-      setSuccess("Service added successfully!");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-      // Reset form state
+      const responseData = await response.json();
+      console.log("Service added successfully:", responseData);
+      setSuccess("Service added successfully!");
+      setShowPopup(true);
+
+      // Reset form fields
       setServiceName("");
       setServiceCategory("");
       setLocation("");
@@ -177,25 +188,10 @@ const ServicePage = () => {
       setSelectedEventTypes([]);
       setError("");
     } catch (error) {
-      console.error("Full error object:", error);
-      if (error.response) {
-        console.error("Error data:", error.response.data);
-        console.error("Error status:", error.response.status);
-        console.error("Error headers:", error.response.headers);
-        setError(
-          `Server error: ${error.response.status}. ${
-            error.response.data.message || "Please try again."
-          }`
-        );
-      } else if (error.request) {
-        console.error("Error request:", error.request);
-        setError("No response received from server. Please try again.");
-      } else {
-        console.error("Error message:", error.message);
-        setError(
-          "An error occurred while sending the request. Please try again."
-        );
-      }
+      console.error("Error:", error);
+      setError(
+        "An error occurred while sending the request. Please try again."
+      );
     }
   };
 
@@ -220,6 +216,37 @@ const ServicePage = () => {
   const handleServiceCategoryChange = (e) => {
     setServiceCategory(e.target.value);
     setSelectedServices([]);
+  };
+
+  const ServiceAddedPopup = ({ serviceName, onClose }) => {
+    return (
+      <div className="popup-overlay">
+        <div className="service-added-popup">
+          <div className="popup-content">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="checkmark-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <p className="popup-text">{serviceName} added successfully!</p>
+          </div>
+          <div className="close-button-container">
+            <button className="close-button" onClick={onClose}>
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -455,6 +482,12 @@ const ServicePage = () => {
           </button>
         </div>
       </form>
+      {showPopup && (
+        <ServiceAddedPopup
+          serviceName={serviceName}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
     </div>
   );
 };
