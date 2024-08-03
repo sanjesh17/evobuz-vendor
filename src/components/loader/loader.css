@@ -32,7 +32,7 @@
 }
 
 .about-image {
-  filter: invert(42%) hue-rotate(180deg) brightness(1.5);
+  /* filter: invert(42%) hue-rotate(180deg) brightness(1.5); */
   background-color: transparent;
   height: 45px;
   width: 55px;

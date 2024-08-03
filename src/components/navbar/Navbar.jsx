@@ -46,10 +46,10 @@ const Navbar = () => {
                 className="btn-sign-up"
                 type="button"
                 onClick={() => {
-                  navigate("/signup");
+                  navigate("/login");
                 }}
               >
-                Sign Up
+                Login
               </button>
             </li>
           </ul>

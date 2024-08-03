@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./productpage.css";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; // Import Cookies
 
 const ProductAddedPopup = ({ productName, onClose }) => {
   return (
@@ -116,13 +117,16 @@ const ProductPage = () => {
       videos: videoFiles,
     };
 
+    const token = Cookies.get("token"); // Retrieve the token from cookies
+
     try {
       const response = await fetch(
-        "https://vendorweb.onrender.com/vendor/products",
+        "https://evovendors.onrender.com/vendor/products", // Updated URL
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the authorization token
           },
           body: JSON.stringify(formData),
         }

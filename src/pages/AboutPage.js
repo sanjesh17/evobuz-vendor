@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar/Navbar";
 import About from "../components/about/About";
 import AdminNavbar from "../components/adminnavbar/AdminNavbar";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from "react";
 import Loader from "../components/loader/Loader";
 import usePageLoader from "../components/PageLoader/usePageLoader";
 
@@ -12,16 +10,13 @@ const AboutPage = () => {
   const isLoading = usePageLoader();
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsAdmin(true);
-      } else {
-        setIsAdmin(false);
-      }
-    });
-
-    return () => unsubscribe();
+    // Example: Check local storage or any custom logic for admin status
+    const adminStatus = localStorage.getItem("isAdmin");
+    if (adminStatus === "true") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
   }, []);
 
   return (

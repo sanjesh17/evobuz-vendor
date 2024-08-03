@@ -3,15 +3,19 @@ import "./productcard.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
 
 const ProductCard = ({ product, onDelete }) => {
+  const token = Cookies.get("token");
+
   const handleDelete = (e) => {
     e.preventDefault();
-    e.stopPropagation(); 
-    fetch(`https://vendorweb.onrender.com/vendor/products/${product._id}`, {
+    e.stopPropagation();
+    fetch(`https://evovendors.onrender.com/vendor/products/${product._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Add authorization header
       },
     })
       .then((response) => {

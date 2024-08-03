@@ -5,6 +5,7 @@ import card1 from "../../assets/icard-1.jpg";
 import card2 from "../../assets/icard-2.jpg";
 import card3 from "../../assets/icard-3.jpg";
 import WeeklySalesLineChart from "../chart/WeeklySalesLineChart";
+import Cookies from "js-cookie"; // Import js-cookie
 
 const Detail = () => {
   const [product, setProduct] = useState(null);
@@ -15,9 +16,16 @@ const Detail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = Cookies.get("token"); // Retrieve the token from cookies
         const response = await fetch(
-          `https://vendorweb.onrender.com/vendor/products/${id}`
+          `https://evovendors.onrender.com/vendor/products/${id}`, // Updated URL
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the authorization token
+            },
+          }
         );
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -45,7 +53,7 @@ const Detail = () => {
           </div>
           <div className="image-cards">
             <div className="image-big">
-              <img src={card1} alt="Pimage-1"></img>
+              <img src={card1} alt="Pimage-1" />
             </div>
             <div className="small-container">
               <img src={card2} alt="Pimage-2" />
@@ -56,7 +64,7 @@ const Detail = () => {
         <div className="detail-content-container">
           <div className="desc-container">
             <h3>{product.productName}</h3>
-            <hr></hr>
+            <hr />
             <p>{product.productDescription}</p>
             <div className="price-container">
               <div className="pricebtn-container">

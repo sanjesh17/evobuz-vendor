@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase";
+import Cookies from "js-cookie";
+
+const checkUserAuth = async () => {
+  try {
+    Cookies.get("token");
+  } catch (error) {
+    console.error(error);
+    return { isAuthenticated: false };
+  }
+};
 
 const AuthRedirect = ({ children }) => {
-  const [user, loading] = useAuthState(auth);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
-  if (loading) {
+  useEffect(() => {
+    const verifyAuth = async () => {
+      const authStatus = await checkUserAuth();
+      setIsAuthenticated(authStatus.isAuthenticated);
+    };
+
+    verifyAuth();
+  }, []);
+
+  if (isAuthenticated === null) {
     return <div>Loading...</div>;
   }
 
-  if (user) {
+  if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
   }
 

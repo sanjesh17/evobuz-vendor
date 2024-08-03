@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./profile.css";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const auth = getAuth();
-
-const ProfilePage = () => {
+const Profile = () => {
   const [logoPreview, setLogoPreview] = useState(null);
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setEmail(user.email);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
+  // Assuming you are fetching the email from a new auth system or API
+  // This is a placeholder for fetching user data
+  // Use useEffect to fetch user data if necessary
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const response = await fetch('/api/user');
+  //     const user = await response.json();
+  //     setEmail(user.email);
+  //   };
+  //   fetchUserData();
+  // }, []);
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
@@ -42,7 +42,7 @@ const ProfilePage = () => {
     console.log(data);
 
     // Example API call (uncomment and replace with your API endpoint)
-    // fetch('your-api-endpoint', {
+    // fetch('/api/update-profile', {
     //     method: 'POST',
     //     headers: {
     //         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const ProfilePage = () => {
         <path
           d="M2 41C378 -20.5773 537.333 15.3428 570 41"
           stroke="#011EB6"
-          stroke-width="13"
+          strokeWidth="13"
         />
       </svg>
       <form className="profile-form-container" onSubmit={handleSubmit}>
@@ -171,4 +171,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default Profile;

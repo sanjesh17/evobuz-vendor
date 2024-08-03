@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
+import Cookies from "js-cookie"; // Import Cookies
 
 const ServicePage = () => {
   const [serviceName, setServiceName] = useState("");
@@ -151,13 +152,16 @@ const ServicePage = () => {
       videos: videoBase64Results,
     };
 
+    const token = Cookies.get("token"); // Retrieve the token from cookies
+
     try {
       const response = await fetch(
-        "https://vendorweb.onrender.com/vendor/services",
+        "https://evovendors.onrender.com/vendor/services", // Updated URL
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the authorization token
           },
           body: JSON.stringify(data),
         }

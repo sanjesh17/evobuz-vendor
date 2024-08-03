@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import axios
 import ServiceCard from "./ServiceCard";
 import "./servicecard.css";
+import Cookies from "js-cookie"; // Import Cookies
 
 const ServiceList = () => {
   const [services, setServices] = useState([]);
@@ -18,18 +20,23 @@ const ServiceList = () => {
   }, []);
 
   const fetchServices = async () => {
+    const token = Cookies.get("token"); // Retrieve the token from cookies
+
     try {
-      const response = await fetch(
-        "https://vendorweb.onrender.com/vendor/services"
+      const response = await axios.get(
+        "https://evovendors.onrender.com/vendor/services", // Updated URL
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the authorization token
+          },
+        }
       );
-      if (!response.ok) {
-        throw new Error("Failed to fetch services");
-      }
-      const data = await response.json();
-      setServices(data);
+
+      setServices(response.data);
       setLoading(false);
     } catch (err) {
-      setError(err.message);
+      setError(err.response ? err.response.data.message : err.message);
       setLoading(false);
     }
   };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import "./productcard.css";
+import Cookies from "js-cookie"; // Import Cookies
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -18,13 +19,24 @@ const ProductList = () => {
   }, []);
 
   const fetchProducts = async () => {
+    const token = Cookies.get("token"); // Retrieve token from cookies
+
     try {
       const response = await fetch(
-        "https://vendorweb.onrender.com/vendor/products"
+        "https://evovendors.onrender.com/vendor/products",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the authorization token
+          },
+        }
       );
+
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }
+
       const data = await response.json();
       setProducts(data);
       setLoading(false);
@@ -54,7 +66,7 @@ const ProductList = () => {
     <div className="product-list">
       {products.map((product) => (
         <ProductCard
-          key={product.id}
+          key={product._id}
           product={product}
           onDelete={handleDelete}
         />

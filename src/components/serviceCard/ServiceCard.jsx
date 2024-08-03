@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import axios
 import "./servicecard.css";
+import Cookies from "js-cookie"; // Import Cookies
 
 const ServiceCard = ({ service, onDelete }) => {
   const [expanded, setExpanded] = useState(false);
@@ -12,20 +14,18 @@ const ServiceCard = ({ service, onDelete }) => {
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this service?")) {
       setIsDeleting(true);
+      const token = Cookies.get("token"); // Retrieve the token from cookies
+
       try {
-        const response = await fetch(
-          `https://vendorweb.onrender.com/vendor/services/${service._id}`,
+        await axios.delete(
+          `https://evovendors.onrender.com/vendor/services/${service._id}`,
           {
-            method: "DELETE",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`, // Add authorization header
             },
           }
         );
-
-        if (!response.ok) {
-          throw new Error("Failed to delete the service");
-        }
 
         onDelete(service._id);
       } catch (error) {

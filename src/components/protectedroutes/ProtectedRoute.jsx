@@ -1,16 +1,11 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import Cookies from "js-cookie";
 
 const ProtectedRoute = ({ children }) => {
-  const [user, loading] = useAuthState(auth);
+  const token = Cookies.get("token");
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!user) {
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
 

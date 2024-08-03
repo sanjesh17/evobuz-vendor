@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./adminnavbar.css";
 import { Link } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Logo from '../../assets/Logo.png'
+import Logo from "../../assets/Logo.png";
 import UserProfilePopup from "../userpopup/UserProfilePopup";
+
+const fetchUser = async () => {
+  try {
+    const response = await fetch("/api/current-user");
+    if (!response.ok) throw new Error("Failed to fetch user");
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
 
 const AdminNavbar = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+    const getUserData = async () => {
+      const userData = await fetchUser();
+      setUser(userData);
+    };
 
-    return () => unsubscribe();
+    getUserData();
   }, []);
 
   const togglePopup = () => {
@@ -28,11 +38,7 @@ const AdminNavbar = () => {
         <div className="evo__navbar-links_logo">
           <div className="logo">
             <Link to="/home">
-              <img
-                className="logo-image-main"
-                src={Logo}
-                alt="about"
-              />
+              <img className="logo-image-main" src={Logo} alt="Logo" />
             </Link>
           </div>
         </div>
