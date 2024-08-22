@@ -3,6 +3,7 @@ import "./navbar.css";
 import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -14,7 +15,7 @@ const Navbar = () => {
         <Link className="navbar-brand" to="/home">
           <img
             className="logo-image-main"
-            src="https://res.cloudinary.com/dgviahrbs/image/upload/v1721299352/WhatsApp_Image_2024-07-18_at_13.58.56-removebg-preview_ly8dxx.png"
+            src={require('../../assets/Logo.png')}
             alt="about-logo"
           />
         </Link>

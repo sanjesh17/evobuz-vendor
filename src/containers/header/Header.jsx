@@ -1,6 +1,6 @@
 import React from 'react';
 import './header.css';
-import event from '../../assets/eventheader.png';
+import Logo from '../../assets/Logo.png';
 import {useNavigate} from 'react-router-dom';
 
 
@@ -19,7 +19,7 @@ const Header = () => {
         </div>
       </div>
       <div className="evo__header-image">
-        <img src={event} alt="event" />
+        <img src={Logo} alt="event" />
       </div>
     </div>
   )
