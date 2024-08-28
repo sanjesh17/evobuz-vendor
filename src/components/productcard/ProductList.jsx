@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import "./productcard.css";
-import Cookies from "js-cookie"; // Import Cookies
+import Cookies from "js-cookie";
+import usePageLoader from "../PageLoader/usePageLoader";
+import Loader from "../loader/Loader";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isLoading = usePageLoader();
 
   const handleDelete = (deletedProductId) => {
     setProducts((prevProducts) =>
@@ -38,7 +41,6 @@ const ProductList = () => {
       }
 
       const data = await response.json();
-      console.log(data)
       setProducts(data);
       setLoading(false);
     } catch (err) {
@@ -48,7 +50,11 @@ const ProductList = () => {
   };
 
   if (loading) {
-    return <div className="product-list">Loading...</div>;
+    return (
+      <div className="product-list loading">
+        <Loader show={isLoading} />
+      </div>
+    );
   }
 
   if (error) {

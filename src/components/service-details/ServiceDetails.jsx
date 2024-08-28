@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./detail.css";
+import "./servicedetails.css";
 import WeeklySalesLineChart from "../chart/WeeklySalesLineChart";
 import Cookies from "js-cookie";
 import { Carousel } from "react-responsive-carousel";
@@ -8,8 +8,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import usePageLoader from "../PageLoader/usePageLoader";
 import Loader from "../loader/Loader";
 
-const Detail = () => {
-  const [product, setProduct] = useState(null);
+const ServiceDetails = () => {
+  const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { id } = useParams();
@@ -20,7 +20,7 @@ const Detail = () => {
       try {
         const token = Cookies.get("token");
         const response = await fetch(
-          `https://evovendors.onrender.com/vendor/products/${id}`,
+          `https://evovendors.onrender.com/vendor/services/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ const Detail = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setProduct(data);
+        setService(data);
         setLoading(false);
       } catch (error) {
         setError("Error fetching data: " + error.message);
@@ -49,7 +49,7 @@ const Detail = () => {
       </div>
     );
   if (error) return <div>{error}</div>;
-  if (!product) return <div>No product data available</div>;
+  if (!service) return <div>No service data available</div>;
 
   const handleImageError = (e) => {
     e.target.src = "/path/to/fallback-image.jpg";
@@ -60,14 +60,14 @@ const Detail = () => {
       <div className="detail-content">
         <div className="carousel-container">
           <div className="detail-header">
-            <h2>{product.productName}</h2>
+            <h2>{service.serviceName}</h2>
           </div>
           <Carousel showThumbs={true} infiniteLoop useKeyboardArrows autoPlay>
-            {product.images.map((image, index) => (
+            {service.images.map((image, index) => (
               <div key={index}>
                 <img
                   src={`https://evovendors.onrender.com/image/${image}`}
-                  alt={`${product.productName} - ${index + 1}`}
+                  alt={`${service.serviceName} - ${index + 1}`}
                   onError={handleImageError}
                 />
               </div>
@@ -76,15 +76,35 @@ const Detail = () => {
         </div>
         <div className="detail-content-container">
           <div className="desc-container">
-            <h3>{product.productName}</h3>
+            <h3>{service.serviceName}</h3>
+            <p className="service-category-pill">{service.serviceCategory}</p>
+            <p>{service.location}</p>
             <hr />
-            <p>{product.productDescription}</p>
+            <p>{service.description_ser}</p>
+            <hr />
+            <div className="service-page-content">
+              <div className="service-page-details">
+                <h2>Event Types</h2>
+                <ul>
+                  {service.selectedEventTypes.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="service-page-details">
+                <h2>Services</h2>
+                <ul>
+                  {service.selectedServices.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
             <div className="price-container">
               <div className="pricebtn-container">
-                <button type="button">₹{product.price}</button>
-              </div>
-              <div className="info-container">
-                <p>1200+ customers bought this last month</p>
+                <button type="button">
+                  ₹{service.lowestAmount} - ₹{service.highestAmount}
+                </button>
               </div>
             </div>
           </div>
@@ -97,4 +117,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default ServiceDetails;

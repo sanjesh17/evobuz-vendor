@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Import axios
+import axios from "axios";
 import ServiceCard from "./ServiceCard";
 import "./servicecard.css";
-import Cookies from "js-cookie"; // Import Cookies
+import Cookies from "js-cookie";
+import usePageLoader from "../PageLoader/usePageLoader";
+import Loader from "../loader/Loader";
 
 const ServiceList = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isLoading = usePageLoader();
 
   const handleDelete = (deletedServiceId) => {
     setServices((prevServices) =>
@@ -42,14 +45,14 @@ const ServiceList = () => {
   };
 
   if (loading) {
-    return <div className="service-list loading">Loading...</div>;
+    return (
+      <div className="service-list loading">
+        <Loader show={isLoading} />
+      </div>
+    );
   }
 
-  if (error) {
-    return <div className="service-list error">Error: {error}</div>;
-  }
-
-  if (services.length === 0) {
+  if (error && services.length === 0) {
     return (
       <div className="service-list empty-list">
         <p>No services available</p>

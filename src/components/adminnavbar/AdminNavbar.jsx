@@ -37,7 +37,7 @@ const AdminNavbar = () => {
       <div className="evo__navbar-links">
         <div className="evo__navbar-links_logo">
           <div className="logo">
-            <Link to="/home">
+            <Link to="/dashboard">
               <img className="logo-image-main" src={Logo} alt="Logo" />
             </Link>
           </div>

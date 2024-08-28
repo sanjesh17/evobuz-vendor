@@ -91,3 +91,44 @@
   margin-bottom: 20px;
   padding: 2rem 6rem;
 }
+
+.service-category-pill {
+  margin: 20px 0;
+  padding: 10px 1rem;
+  color: white;
+  width: max-content;
+  border-radius: 20px;
+  background-color: hsl(271, 95%, 60%);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.service-category-pill:hover {
+  background-color: hsl(271, 100%, 55%);
+}
+
+.service-page-details {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.service-page-details h2 {
+  margin-bottom: 5px;
+  color: #a855f7;
+}
+
+.service-page-details ul {
+  list-style-type: none;
+  padding-left: 0px;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.service-page-details li {
+  margin-bottom: 3px;
+}
+
+.service-page-content {
+  display: flex;
+  justify-content: space-between;
+}

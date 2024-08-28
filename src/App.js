@@ -11,6 +11,7 @@ import AboutPage from "./pages/AboutPage";
 import ProfilePage from "./pages/ProfilePage";
 import DetailPage from "./pages/DetailPage";
 import ProtectedRoute from "./components/protectedroutes/ProtectedRoute";
+import ServiceDetailPage from "./pages/ServiceDetailPage";
 
 const App = () => {
   return (
@@ -18,7 +19,6 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route
             path="/products"
@@ -36,11 +36,33 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/productdetails/:id" element={<DetailPage />} />
+          <Route
+            path="/productdetails/:id"
+            element={
+              <ProtectedRoute>
+                <DetailPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/servicedetails/:id"
+            element={
+              <ProtectedRoute>
+                <ServiceDetailPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

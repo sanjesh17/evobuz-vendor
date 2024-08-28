@@ -87,7 +87,7 @@ body {
   width: 100%;
 }
 
-.product-button {
+.product-submit-button {
   font-family: var(--font-family-2);
   width: 100%;
   max-width: 850px;
@@ -102,7 +102,7 @@ body {
   font-size: 15px;
 }
 
-.product-button:hover {
+.product-submit-button:hover {
   background-color: #953bea;
   transform: translateY(-2px);
 }
@@ -175,6 +175,11 @@ body {
 }
 
 .close-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.product-spinner-loader {
   display: flex;
   justify-content: center;
 }

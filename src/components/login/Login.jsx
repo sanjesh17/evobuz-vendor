@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   const requestOtp = async () => {
-    setLoading(true); // Set loading to true when OTP request starts
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://evovendors.onrender.com/login",
@@ -32,7 +32,7 @@ const Login = () => {
     } catch (error) {
       setMessage(error.response?.data?.error || "Error requesting OTP");
     } finally {
-      setLoading(false); // Set loading to false when OTP request completes
+      setLoading(false);
     }
   };
 
@@ -71,9 +71,9 @@ const Login = () => {
             <button
               className="vendorslogin-button"
               onClick={requestOtp}
-              disabled={loading} // Disable button while loading
+              disabled={loading}
             >
-              {loading ? "Sending..." : "Send OTP"} {/* Display loading text */}
+              {loading ? "Sending..." : "Send OTP"} 
             </button>
           </div>
         ) : (

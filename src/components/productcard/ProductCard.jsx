@@ -35,7 +35,7 @@ const ProductCard = ({ product, onDelete }) => {
   };
 
   const handleImageError = (e) => {
-    e.target.src = "/path/to/fallback-image.jpg"; // Set a fallback image path
+    e.target.src = "/path/to/fallback-image.jpg";
   };
 
   return (

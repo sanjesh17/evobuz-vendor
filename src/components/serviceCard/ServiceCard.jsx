@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios
+import axios from "axios";
 import "./servicecard.css";
-import Cookies from "js-cookie"; // Import Cookies
+import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service, onDelete }) => {
   const [expanded, setExpanded] = useState(false);
@@ -37,10 +38,20 @@ const ServiceCard = ({ service, onDelete }) => {
     }
   };
 
+  const handleImageError = (e) => {
+    e.target.src = "/path/to/fallback-image.jpg";
+  };
+
   return (
     <div className={`service-card ${expanded ? "expanded" : ""}`}>
       <div className="service-image">
-        <img src={service.images[0]} alt={service.serviceName} />
+        <Link to={`/servicedetails/${service._id}`}>
+          <img
+            src={`https://evovendors.onrender.com/image/${service.images[0]}`}
+            alt={service.serviceName}
+            onError={handleImageError}
+          />
+        </Link>
       </div>
       <div className="service-content">
         <span className="service-category">{service.serviceCategory}</span>

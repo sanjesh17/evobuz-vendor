@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import Cookies from "js-cookie"; // Import Cookies
+import Cookies from "js-cookie";
+import { Circles } from "react-loader-spinner";
 
 const ServicePage = () => {
   const [serviceName, setServiceName] = useState("");
@@ -11,7 +12,6 @@ const ServicePage = () => {
   const [highestAmount, setHighestAmount] = useState(10000);
   const [pincode, setPincode] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFiles, setVideoFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
@@ -19,6 +19,7 @@ const ServicePage = () => {
   const [selectedServices, setSelectedServices] = useState([]);
   const [selectedEventTypes, setSelectedEventTypes] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const serviceCategories = [
     "Event Planning",
@@ -121,49 +122,42 @@ const ServicePage = () => {
       return;
     }
 
-    // Function to convert file to base64
-    const fileToBase64 = (file) => {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-      });
-    };
+    const formData = new FormData();
+    formData.append("serviceName", serviceName);
+    formData.append("serviceCategory", serviceCategory);
+    formData.append("location", location);
+    formData.append("description_ser", description);
+    formData.append("lowestAmount", lowestAmount);
+    formData.append("highestAmount", highestAmount);
 
-    // Convert image files to base64
-    const imageBase64Promises = imageFiles.map((file) => fileToBase64(file));
-    const imageBase64Results = await Promise.all(imageBase64Promises);
+    selectedServices.forEach((service, index) => {
+      formData.append(`selectedServices[${index}]`, service);
+    });
 
-    // Convert video files to base64
-    const videoBase64Promises = videoFiles.map((file) => fileToBase64(file));
-    const videoBase64Results = await Promise.all(videoBase64Promises);
+    selectedEventTypes.forEach((eventType, index) => {
+      formData.append(`selectedEventTypes[${index}]`, eventType);
+    });
 
-    const data = {
-      serviceName,
-      serviceCategory,
-      location,
-      description_ser: description,
-      lowestAmount,
-      highestAmount,
-      selectedServices,
-      selectedEventTypes,
-      images: imageBase64Results,
-      videos: videoBase64Results,
-    };
+    imageFiles.forEach((file, index) => {
+      formData.append(`files`, file);
+    });
 
-    const token = Cookies.get("token"); // Retrieve the token from cookies
+    videoFiles.forEach((file, index) => {
+      formData.append(`files`, file);
+    });
+
+    const token = Cookies.get("token");
+    setLoading(true);
 
     try {
       const response = await fetch(
-        "https://evovendors.onrender.com/vendor/services", // Updated URL
+        "https://evovendors.onrender.com/vendor/services",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Include the authorization token
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(data),
+          body: formData,
         }
       );
 
@@ -173,10 +167,9 @@ const ServicePage = () => {
 
       const responseData = await response.json();
       console.log("Service added successfully:", responseData);
-      setSuccess("Service added successfully!");
       setShowPopup(true);
+      setLoading(false);
 
-      // Reset form fields
       setServiceName("");
       setServiceCategory("");
       setLocation("");
@@ -196,6 +189,8 @@ const ServicePage = () => {
       setError(
         "An error occurred while sending the request. Please try again."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -271,7 +266,6 @@ const ServicePage = () => {
         />
       </svg>
       {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">{success}</p>}
       <form className="service-form" onSubmit={handleSubmit}>
         <div className="service-form-group">
           <label htmlFor="serviceCategory" className="service-label">
@@ -481,8 +475,19 @@ const ServicePage = () => {
         </div>
 
         <div className="submit-container">
-          <button type="submit" className="service-button">
-            Submit
+          <button type="submit" className="service-button" disabled={loading}>
+            {loading ? (
+              <Circles
+                height="30"
+                width="30"
+                color="#4fa94d"
+                ariaLabel="circles-loading"
+                visible={true}
+                wrapperClass="service-spinner-loader"
+              />
+            ) : (
+              "Add Service"
+            )}
           </button>
         </div>
       </form>

@@ -3,7 +3,7 @@
   background-color: #212229;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0px 2px black;
+  box-shadow: 0 0px 8px black;
   transition: all 0.3s ease;
   width: 300px;
   cursor: pointer;
@@ -41,6 +41,22 @@
   border-radius: 12px;
   display: inline-block;
   margin-bottom: 10px;
+}
+
+.service-list.loading,
+.service-list.empty-list {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 67vh;
+  background-color: #212229;
+  border-radius: 20px;
+}
+
+.service-list.empty-list p {
+  font-size: 18px;
+  color: #888;
 }
 
 .service-name {
@@ -134,4 +150,10 @@
 .delete-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  row-gap: 40px;
 }
