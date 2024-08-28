@@ -10,12 +10,13 @@ const ProductCard = ({ product, onDelete }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    e.stopPropagation();
+    e.stopPropagation(); // Prevent the Link from being triggered
+
     fetch(`https://evovendors.onrender.com/vendor/products/${product._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Add authorization header
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => {
@@ -33,24 +34,32 @@ const ProductCard = ({ product, onDelete }) => {
       });
   };
 
+  const handleImageError = (e) => {
+    e.target.src = "/path/to/fallback-image.jpg"; // Set a fallback image path
+  };
+
   return (
-    <Link to={`/productdetails/${product._id}`}>
-      <div className="product-card">
+    <div className="product-card">
+      <Link to={`/productdetails/${product._id}`}>
         <div className="product-image">
-          <img src={product.images[0]} alt={product.productName} />
+          <img
+            src={`https://evovendors.onrender.com/image/${product.images[0]}`}
+            alt={product.productName}
+            onError={handleImageError}
+          />
         </div>
         <div className="product-description">
           <h4>{product.productName}</h4>
           <p className="desc">{product.productDescription}</p>
         </div>
-        <div className="button-close-container">
-          <button className="price">₹{product.price}</button>
-          <button className="close" onClick={handleDelete}>
-            <FontAwesomeIcon icon={faTrash} />
-          </button>
-        </div>
+      </Link>
+      <div className="button-close-container">
+        <button className="price">₹{product.price}</button>
+        <button className="close" onClick={handleDelete}>
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
