@@ -82,22 +82,18 @@ const ServicePage = () => {
   };
 
   useEffect(() => {
-    const getLocation = async () => {
+       const getLocation = async () => {
       if (pincode.length === 6) {
         try {
           setError("");
-          const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
           const response = await fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?address=${pincode}&key=${apiKey}`
+            `https://nominatim.openstreetmap.org/search?postalcode=${pincode}&format=json&countrycodes=IN`
           );
           const data = await response.json();
-          if (data.status === "OK") {
-            const result = data.results[0];
-            setLocation(result.formatted_address);
+          if (data.length > 0) {
+            setLocation(data[0].display_name); // Set formatted address
           } else {
-            setError(
-              "Location not found. Please check the pincode and try again."
-            );
+            setError("Location not found. Please check the pincode and try again.");
           }
         } catch (err) {
           setError("An error occurred while fetching the location data.");
