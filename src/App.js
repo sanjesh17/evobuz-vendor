@@ -12,7 +12,7 @@ import ProfilePage from "./pages/ProfilePage";
 import DetailPage from "./pages/DetailPage";
 import ProtectedRoute from "./components/protectedroutes/ProtectedRoute";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
-
+import Contact from "./components/contact/Contact";
 const App = () => {
   return (
     <div>
@@ -20,6 +20,7 @@ const App = () => {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/contact" element={<Contact />} />
           <Route
             path="/products"
             element={
@@ -63,6 +64,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+         
         </Routes>
       </BrowserRouter>
     </div>

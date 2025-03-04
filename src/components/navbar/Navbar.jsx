@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/home">
+        <Link className="navbar-brand" to="/">
           <img
             className="logo-image-main"
             src={require('../../assets/Logo.png')}
@@ -32,11 +32,7 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/home">
-                <p>Home</p>
-              </Link>
-            </li>
+           
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 <p>About</p>

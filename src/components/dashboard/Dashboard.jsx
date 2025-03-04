@@ -7,7 +7,7 @@ import ProductList from "../productcard/ProductList";
 import NotificationPage from "../../pages/NotificationPage";
 import Contact from "../contact/Contact";
 import ServiceList from "../serviceCard/ServiceList";
-
+import SmallDashboard from "../smalldashboard";
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
 
@@ -88,6 +88,8 @@ const Dashboard = () => {
   };
 
   return (
+    <div>
+
     <div className="dash-container">
       <div className="dash-main-container">
         <div className="sidebar-container">
@@ -112,7 +114,16 @@ const Dashboard = () => {
           {renderMainContent()}
         </div>
       </div>
+
     </div>
+     <div className="small-dash-container">
+       <SmallDashboard/>
+      
+
+     </div>
+
+    </div>
+
   );
 };
 

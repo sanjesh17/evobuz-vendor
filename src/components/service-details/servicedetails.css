@@ -3,6 +3,18 @@
   color: white;
 }
 
+@media (max-width: 1024px) {
+  .detail-container {
+    padding: 2rem 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-container {
+    padding: 1.5rem;
+  }
+}
+
 .detail-header {
   margin-bottom: 20px;
 }
@@ -15,6 +27,12 @@
   border-radius: 20px;
 }
 
+@media (max-width: 768px) {
+  .detail-content {
+    padding: 1.5rem;
+  }
+}
+
 .carousel-container {
   margin-top: 20px;
 }
@@ -23,6 +41,13 @@
   height: 400px;
   object-fit: cover;
   border-radius: 20px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .carousel .slide img {
+    height: 250px;
+  }
 }
 
 .carousel .control-dots .dot {
@@ -33,6 +58,13 @@
   margin-top: 30px;
   display: grid;
   grid-template-columns: 60% 40%;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .detail-content-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .desc-container h4 {
@@ -48,6 +80,13 @@
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   height: 200px;
+}
+
+@media (max-width: 768px) {
+  .chart-card {
+    margin-left: 0;
+    height: auto;
+  }
 }
 
 .desc-container button {
@@ -70,6 +109,7 @@
 .price-container {
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .info-container {
@@ -90,6 +130,13 @@
   align-items: center;
   margin-bottom: 20px;
   padding: 2rem 6rem;
+}
+
+@media (max-width: 768px) {
+  .detail-content.loading {
+    padding: 2rem;
+    height: auto;
+  }
 }
 
 .service-category-pill {
@@ -131,4 +178,11 @@
 .service-page-content {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .service-page-content {
+    flex-direction: column;
+  }
 }

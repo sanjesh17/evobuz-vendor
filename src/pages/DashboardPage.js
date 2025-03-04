@@ -16,7 +16,7 @@ const DashboardPage = () => {
         <div className="gradient__bg">
           <AdminNavbar />
           <Dashboard />
-          <Footer />
+     
         </div>
       )}
     </>

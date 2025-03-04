@@ -88,3 +88,8 @@
 .evo__navbar-links_container p:hover {
   color: hsla(0, 0%, 100%, 0.737);
 }
+@media (max-width: 992px) { /* Bootstrap's lg breakpoint */
+  .navbar-toggler {
+    display: none !important;
+  }
+}

@@ -7,7 +7,7 @@ const SignOutButton = () => {
 
   const handleSignOut = async () => {
     Cookies.remove("token");
-    navigate("/home");
+    navigate("/");
   };
 
   return <button onClick={handleSignOut}>Sign Out</button>;

@@ -5,13 +5,14 @@
   overflow: hidden;
   box-shadow: 0 0px 8px black;
   transition: all 0.3s ease;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   cursor: pointer;
   color: white;
 }
 
 .service-card.expanded {
-  width: 350px;
+  max-width: 350px;
 }
 
 .service-card:hover {
@@ -152,8 +153,30 @@
   cursor: not-allowed;
 }
 
+/* Responsive Grid */
 .service-grid {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  row-gap: 40px;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
 }
