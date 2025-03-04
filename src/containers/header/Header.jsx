@@ -12,9 +12,9 @@ const Header = () => {
         <h1 className="text">Expand Your Business with Event Partnerships.</h1>
         <p>Effortlessly plan and book your next event. Connect with top venues, vendors, and planners to create unforgettable moments. Start your journey with us today!</p>
         <div className="evo__header-content__input">
-          <input type="email" placeholder="Type Email Address" />
+      
           <button type="button" onClick={() => {
-            navigate('/signup');
+            navigate('/login');
           }}>Get Started</button>
         </div>
       </div>

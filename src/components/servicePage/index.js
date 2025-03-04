@@ -100,6 +100,7 @@ const ServicePage = () => {
         }
       }
     };
+    
 
     getLocation();
   }, [pincode]);

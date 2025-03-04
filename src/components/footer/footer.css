@@ -5,11 +5,12 @@
   color: #fff; /* Light text color */
   padding: 20px;
   display: flex;
-  flex-direction: column; /* Arrange items vertically */
+  flex-direction: column; /* Default: Arrange items vertically */
   align-items: center; /* Center items horizontally */
   width: 100%;
   margin-top: 60px;
   padding-top: 50px;
+  text-align: center;
 }
 
 .footer-section-container h1 {
@@ -17,17 +18,22 @@
   margin-bottom: 20px;
 }
 
+/* Flex container for the footer sections */
 .footer-sec {
   display: flex;
+  flex-direction: column; /* Default: Stack items vertically */
+  align-items: center;
+  width: 100%;
 }
 
+/* Styling for each section */
 .getus-know-container,
 .let-us-connect {
-  margin-bottom: 30px;
   display: flex;
   flex-direction: column; /* Arrange items vertically */
   align-items: center; /* Center items horizontally */
-  margin-left: 50px;
+  margin-bottom: 30px;
+  width: 100%;
 }
 
 .getus-know-container h2,
@@ -41,6 +47,8 @@
   list-style-type: none;
   padding: 0;
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .getus-know-container ul li,
@@ -59,4 +67,22 @@
 .getus-know-container ul li a:hover,
 .let-us-connect ul li a:hover {
   color: #ccc; /* Link color on hover */
+}
+
+/* Responsive Design */
+@media screen and (min-width: 768px) {
+ 
+  .footer-sec {
+    flex-direction: row; /* Side by side layout */
+    justify-content: center;
+    align-items: flex-start;
+   
+  }
+
+  .getus-know-container,
+  .let-us-connect {
+    width: auto;
+    margin-left: 50px;
+    text-align: left;
+  }
 }

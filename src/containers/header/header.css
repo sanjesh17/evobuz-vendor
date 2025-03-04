@@ -1,5 +1,9 @@
 .evo__header {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
 }
 
 .evo__header-content {
@@ -9,6 +13,8 @@
     align-items: center;
     flex-direction: column;
     margin-right: 5rem;
+    text-align: center;
+ 
 }
 
 .evo__header-content h1 {
@@ -31,11 +37,12 @@
 .evo__header-content__input {
     width: 100%;
     margin: 2rem 0 1rem;
-
     display: flex;
     flex-direction: row;
 }
-
+.text{
+    color: aliceblue;
+}
 .evo__header-content__input input {
     flex: 2;
     width: 100%;
@@ -49,7 +56,6 @@
     padding: 0 1rem;
     outline: none;
     color: #fff;
-
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
@@ -76,10 +82,11 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     transition: background-color 0.5s ease;
+    
 }
 
-.text {
-    color: white;
+.evo__header-content__input button:hover {
+    background-color: #33b249;
 }
 
 .evo__header-image {
@@ -91,9 +98,85 @@
 
 .evo__header-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-width: 500px;
 }
 
-.evo__header-content__input button:hover {
-    background-color: #33b249;
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .evo__header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .evo__header-content {
+        margin-right: 0;
+    }
+
+    .evo__header-content h1 {
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    .evo__header-content p {
+        font-size: 18px;
+        line-height: 26px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .evo__header-content h1 {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    .evo__header-content p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .evo__header-content__input {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .evo__header-content__input input {
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .evo__header-content__input button {
+        border-radius: 5px;
+    }
+    .evo__header-image img {
+        max-width: 300px;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .evo__header {
+        padding: 1rem;
+    }
+
+    .evo__header-content h1 {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    .evo__header-content p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .evo__header-content__input input,
+    .evo__header-content__input button {
+        font-size: 16px;
+        min-height: 45px;
+    }
+
+    .evo__header-image img {
+        max-width: 300px;
+        display: none;
+    }
 }
