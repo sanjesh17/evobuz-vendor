@@ -6,63 +6,82 @@
     background-color: #0c112a;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .small-dashboard-btn-box {
+    overflow: hidden; /* Prevents unintended movement */
+}
+
+/* Button Box */
+.small-dashboard-btn-box {
     display: flex;
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .small-dashboard-btn, 
-  .small-dashboard-toggle-btn {
+    flex-wrap: nowrap; /* Prevents buttons from wrapping and shifting */
+}
+
+/* General Button Styling */
+.small-dashboard-btn, 
+.small-dashboard-toggle-btn {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .small-dashboard-btn {
+    transition: background-color 0.3s ease-in-out;
+    width: auto; /* Ensures button size consistency */
+}
+
+/* Primary Button */
+.small-dashboard-btn {
     background-color: #007bff;
     color: white;
-  }
-  
-  .small-dashboard-btn:hover {
+}
+
+.small-dashboard-btn:hover {
     background-color: #0056b3;
-  }
-  
-  .small-dashboard-toggle-btn {
+}
+
+/* Toggle Button */
+.small-dashboard-toggle-btn {
     background-color: #28a745;
     color: white;
-  }
-  
-  .small-dashboard-toggle-btn:hover {
+}
+
+.small-dashboard-toggle-btn:hover {
     background-color: #218838;
-  }
-  
-  .small-dashboard-cards-container {
+}
+
+/* Card Container */
+.small-dashboard-cards-container {
     margin-top: 20px;
-  }
-  .h4{
-    color: white;
-  }
-  .small-dashboard-pro-card,
-  .small-dashboard-serv-card {
+    min-height: 200px; /* Ensures a consistent height to prevent layout shifts */
+}
+
+/* Individual Cards */
+.small-dashboard-pro-card,
+.small-dashboard-serv-card {
     background: rgb(12, 15, 45);
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-  }
-  
-  .small-dashboard-pro-card h4,
-  .small-dashboard-serv-card h4 {
+}
+
+/* Headings */
+h4 {
     margin-bottom: 10px;
-    color: #333;
+    color: white;
     text-align: center;
-  }
-  
+}
+
+/* Fixing Button Hover Effects */
+.small-dashboard-btn:hover,
+.small-dashboard-toggle-btn:hover {
+    transform: none; /* Prevents buttons from moving when hovered */
+}
+
+/* Responsive Fixes */
+@media (max-width: 600px) {
+    .small-dashboard-btn-box {
+        flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    }
+}
